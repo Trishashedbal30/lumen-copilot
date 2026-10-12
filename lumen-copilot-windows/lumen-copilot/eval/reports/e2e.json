@@ -1,0 +1,18 @@
+{
+ "generated_at": "2026-10-11 10:39:44",
+ "source_hash": "e411b7cfd7ea99c5cf842a383b7eb9c12d09a41d3383fa569dce27f48ce5ceb4",
+ "n": 80,
+ "destination_accuracy": [
+  1.0,
+  80
+ ],
+ "ui_state_correctness": [
+  1.0,
+  80
+ ],
+ "dialogue_task_success": 1.0,
+ "verified_on_screen": 80,
+ "e2e_latency_p50_ms": 1287,
+ "e2e_latency_p95_ms": 1612,
+ "failures": []
+}

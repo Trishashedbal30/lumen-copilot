@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lumen - Judge checklist</title>
+<style>body{font:16px/1.55 system-ui;color:#17332d;background:#f7f9f6;margin:0}main{max-width:1100px;margin:auto;padding:30px}h1{font-size:30px}a{color:#125e48}section{background:white;border:1px solid #d7e2db;border-radius:12px;padding:22px;margin:20px 0}table{border-collapse:collapse;width:100%}td,th{padding:12px;text-align:left;border-bottom:1px solid #d7e2db;vertical-align:top}code,pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}.notice{color:#7b4e00}button{font:inherit;padding:8px 18px;cursor:pointer}#status{font-weight:600}.small{font-size:14px} @media(max-width:650px){main{padding:15px}td,th{padding:7px;font-size:13px}}</style></head>
+<body><main><a href="/">Open app</a> | <a href="/eval">Detailed benchmark</a> | <a href="/graph">Application graph</a>
+<h1>Judge checklist: capabilities and measured evidence</h1><p>Configuration, actual inference, calculations and browser verification are separate evidence. Refresh after a model turn.</p>
+<button id="refresh">Refresh evidence</button><p id="status">Loading...</p>
+<section><h2>Current application</h2><p id="catalog"></p><p id="model"></p><p id="inference"></p><p id="dataset"></p><p id="connector"></p></section>
+<section><h2>Measured KPIs</h2><p id="scope" class="small"></p><table><thead><tr><th>KPI</th><th>Measured result</th><th>Scope / limitation</th></tr></thead><tbody id="metrics"></tbody></table></section>
+<section><h2>Demonstrate the complete loop</h2><ol><li>Synthetic: <code>top 5 cities by revenue last quarter</code> - destination, controls, sorting and query evidence.</li><li>UCI: <code>Show monthly revenue for 2011</code> - genuine data, GBP and partial December.</li><li><code>Top 5 countries by revenue in 2011</code> - ranking and top-N.</li><li><code>Compare revenue in two available months</code> - full months and numerical contributors.</li><li><code>what about France?</code>, then <code>undo</code> - context and recovery.</li><li><code>save this view</code> - review, confirm, refresh and reopen.</li><li><code>Show profit in 2011</code> - clarify unsupported metric.</li><li>Show one actual <code>Understanding: llm</code> / <code>Model request: succeeded</code> turn; open its evidence and applied-state check.</li></ol></section>
+<section><h2>Report provenance</h2><ul id="reports"></ul><ul id="limits" class="notice"></ul></section>
+</main><script>
+const el=id=>document.getElementById(id);
+const rate=v=>Array.isArray(v)&&v[0]!=null?`${(v[0]*100).toFixed(2)}% (${v[1]} applicable cases)`:'Not measured';
+function row(name,value,note){let tr=document.createElement('tr');for(const t of [name,value,note]){let td=document.createElement('td');td.textContent=t;tr.append(td)}el('metrics').append(tr)}
+async function load(){try{
+ el('status').textContent='Loading...';const [r,h]=await Promise.all([fetch('/api/readiness'),fetch('/api/health')]);if(!r.ok||!h.ok)throw Error('Status request failed');const d=await r.json(),health=await h.json();
+ el('catalog').textContent=`${d.pages} pages, ${d.widgets} widgets, ${d.data_views} data views; graph and metadata retrieval available.`;
+ const c=health.model_configuration;el('model').textContent=`Mode: ${health.mode}. Configured model: ${c.model||'none'} at ${c.endpoint||'none'}. Configuration alone does not prove inference.`;
+ el('inference').textContent=`Since server restart: ${health.llm_requests.calls} model requests, ${health.llm_requests.responses} responses, ${health.llm_requests.accepted_slots} accepted slot responses, ${health.llm_requests.errors} errors. Individual turn traces identify rules/model/fallback.`;
+ const ds=d.datasets.retail||{};el('dataset').textContent=ds.available?`UCI: ${ds.imported_rows.toLocaleString()} eligible rows, ${ds.excluded_rows.toLocaleString()} exclusions, ${ds.date_start} through ${ds.date_end}, ${ds.currency}. Separate synthetic DuckDB remains available.`:'UCI not imported; synthetic only.';
+ el('connector').textContent=`Connector: ${d.connector.implemented}. ${d.connector.data_provenance?'Active dataset has connector provenance.':'Active dataset came from the local official workbook.'} Live external platform verification: ${d.connector.live_platform_verified?'yes':'not executed'}. ${d.connector.limitations}`;
+ el('metrics').replaceChildren();const b=d.reports.latest.body||{},o=b.overall||{},rr=(b.retrieval||{})['hybrid+structure (agent)']||{};
+ el('scope').textContent=`Reused report: ${b.generated_at||'missing'}, ${b.pages||0} synthetic pages. These are historical measured cases, not arbitrary-request accuracy.`;
+ row('Destination',rate(o.destination_accuracy),`Strict first-label: ${rate(o.destination_accuracy_strict)}. One known acceptable-destination mismatch.`);
+ row('UI state',rate(o.ui_state_correctness),'Backend consistency; browser evidence is separate.');
+ row('Retrieval MRR / recall@5',`${rr.mrr??'N/A'} / ${rr['recall@5']??'N/A'}`,`${rr.n||0} labelled requests; hybrid retrieval + graph reranking. No claim of dense neural vectors by default.`);
+ row('Retrieval precision@5 / relevant-page recall@5',`${rr['precision@5']??'Not yet measured'} / ${rr['relevant_page_recall@5']??'Not yet measured'}`,'Macro average over labelled acceptable pages; differs from first-hit rate.');
+ row('Multi-turn success',`${b.dialogues?.task_success==null?'N/A':(b.dialogues.task_success*100)+'%'} (${b.dialogues?.n??0} dialogues)`,'See detailed report for dialogue counts and turn checks.');
+ row('Action guardrail violation rate',o.action_hallucination_rate==null?'N/A':`${o.action_hallucination_rate*100}%`,'Invalid final states in measured rules cases; model semantic errors can still occur.');
+ row('Rules latency / steps',`${o.latency_p50_ms??'N/A'} ms p50; ${o.latency_p95_ms??'N/A'} ms p95; ${o.avg_state_actions_per_request??'N/A'} actions/request`,'Does not measure LLM or browser latency.');
+ const br=d.reports.e2e.body||{};row('Browser destination / UI state',`${rate(br.destination_accuracy)} / ${rate(br.ui_state_correctness)}`,`${br.n||0} selected cases; p50 ${br.e2e_latency_p50_ms??'N/A'} ms, p95 ${br.e2e_latency_p95_ms??'N/A'} ms.`);
+ const independent=d.reports.retail_independent.body||{};row('Independent real calculations',`${independent.passed??'N/A'}/${independent.total_checks??'N/A'} checks passed`,'Workbook/Decimal oracle independent of runtime query compiler; original report scope.');
+ const fresh=d.reports.fresh_human_browser.body||{};row('Fresh human evidence',`${fresh.passed??'N/A'}/${fresh.n??'N/A'} browser tasks passed`,'Known user requirements; backend and browser reports kept separate. Unseen holdout still needed.');
+ el('reports').replaceChildren();for(const [name,report] of Object.entries(d.reports)){let li=document.createElement('li');li.textContent=`${name}: ${!report.available?'missing':report.matches_current_source===true?'source matches current code':report.matches_current_source===false?'historical source differs from current code':'no source stamp; use original report scope'}`;el('reports').append(li)}
+ el('limits').replaceChildren();for(const s of d.evaluation_limits){let li=document.createElement('li');li.textContent=s;el('limits').append(li)}el('status').textContent='Loaded current runtime and recorded evidence.';
+}catch(e){el('status').textContent=e.message}}
+el('refresh').onclick=load;load();
+</script></body></html>

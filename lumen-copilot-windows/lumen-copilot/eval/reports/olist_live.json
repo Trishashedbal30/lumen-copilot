@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-10-11T06:17:41.063994+00:00",
+  "source_hash": "606bffcb2644c077151d59c382987c21e3cccd4149db7b09e58e0c2ec0313b52",
+  "scope": "Three live configured-model samples with backend state verification. Separate from rules-mode browser checks.",
+  "cases": [
+    {
+      "question": "Show monthly sales value for 2017",
+      "kind": "act",
+      "expected_destination": "olist.sales.overview",
+      "destination": "olist.sales.overview",
+      "source": "llm",
+      "model_request_status": "succeeded",
+      "model_error": null,
+      "backend_verified": true,
+      "browser_verified": false,
+      "latency_ms": 2827.4,
+      "reply": "**Sales value (BRL)** rose (+549.4%) from BRL 111,798.36 (Jan 2017) to **BRL 726,033.19** (Dec 2017), by month. Peak: BRL 987,765.37 (Nov 2017); low: BRL 111,798.36 (Jan 2017).\n_Dataset: Olist Brazilian E-Commerce / real imported data / BRL. Dates group orders by purchase date. Review/delivery relationships are associations, not proven causes._"
+    },
+    {
+      "question": "Top 5 states by late delivery rate in 2017",
+      "kind": "act",
+      "expected_destination": "olist.delivery.overview",
+      "destination": "olist.delivery.overview",
+      "source": "llm",
+      "model_request_status": "succeeded",
+      "model_error": null,
+      "backend_verified": true,
+      "browser_verified": false,
+      "latency_ms": 2810.9,
+      "reply": "Top 5 brazilian states by late delivery rate (2017):\n1. **AL**: 20.7%\n2. **RR**: 16.7%\n3. **MA**: 15.3%\n4. **SE**: 14.5%\n5. **PB**: 12.1%\n_Dataset: Olist Brazilian E-Commerce / real imported data / BRL. Dates group orders by purchase date. Review/delivery relationships are associations, not proven causes._"
+    },
+    {
+      "question": "Compare review scores for late and on-time deliveries in 2017",
+      "kind": "act",
+      "expected_destination": "olist.reviews.overview",
+      "destination": "olist.reviews.overview",
+      "source": "llm",
+      "model_request_status": "succeeded",
+      "model_error": null,
+      "backend_verified": true,
+      "browser_verified": false,
+      "latency_ms": 2887.4,
+      "reply": "Average review score (2017): **On time** 4.28/5 vs **Late** 2.32/5. On time is ahead of Late by 84.8%.\n_Dataset: Olist Brazilian E-Commerce / real imported data / BRL. Dates group orders by purchase date. Review/delivery relationships are associations, not proven causes._"
+    }
+  ]
+}

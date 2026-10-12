@@ -1,0 +1,243 @@
+[
+  {
+    "question": "Show South revenue for August",
+    "result": {
+      "kind": "act",
+      "intent": "show",
+      "target_state": {
+        "page_id": "sales.regional.south",
+        "filters": {
+          "region": [
+            "South"
+          ]
+        },
+        "date_range": {
+          "start": "2026-08-01",
+          "end": "2026-08-31",
+          "label": "Aug 2026"
+        },
+        "compare": "previous_period",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verify": "Checked: the page, filters and dates on screen match what I intended."
+    }
+  },
+  {
+    "question": "Compare August vs July revenue",
+    "result": {
+      "kind": "act",
+      "intent": "compare",
+      "target_state": {
+        "page_id": "sales.overview.revenue_trend",
+        "filters": {},
+        "date_range": {
+          "start": "2026-08-01",
+          "end": "2026-08-31",
+          "label": "Aug 2026"
+        },
+        "compare": "custom",
+        "compare_range": {
+          "start": "2026-07-01",
+          "end": "2026-07-31",
+          "label": "Jul 2026"
+        },
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verify": "Checked: the page, filters and dates on screen match what I intended."
+    }
+  },
+  {
+    "question": "Top 5 cities by revenue last quarter",
+    "result": {
+      "kind": "act",
+      "intent": "query",
+      "target_state": {
+        "page_id": "sales.city.leaderboard",
+        "filters": {},
+        "date_range": {
+          "start": "2026-04-01",
+          "end": "2026-06-30",
+          "label": "Q2 2026",
+          "preset": "last_quarter"
+        },
+        "compare": "previous_period",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 5,
+        "grain": "auto"
+      },
+      "verify": "Checked: the page, filters and dates on screen match what I intended."
+    }
+  },
+  {
+    "question": "what about north?",
+    "result": {
+      "kind": "act",
+      "intent": "show",
+      "target_state": {
+        "page_id": "sales.city.leaderboard",
+        "filters": {
+          "region": [
+            "North"
+          ]
+        },
+        "date_range": {
+          "start": "2026-04-01",
+          "end": "2026-06-30",
+          "label": "Q2 2026",
+          "preset": "last_quarter"
+        },
+        "compare": "previous_period",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verify": "Checked: the page, filters and dates on screen match what I intended."
+    }
+  },
+  {
+    "question": "undo",
+    "result": {
+      "kind": "undo",
+      "intent": "undo",
+      "target_state": {
+        "page_id": "sales.city.leaderboard",
+        "filters": {},
+        "date_range": {
+          "start": "2026-04-01",
+          "end": "2026-06-30",
+          "label": "Q2 2026",
+          "preset": "last_quarter"
+        },
+        "compare": "previous_period",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 5,
+        "grain": "auto",
+        "cmp_range": {
+          "start": "2026-01-01",
+          "end": "2026-03-31",
+          "label": "Jan 2026 \u2013 Mar 2026"
+        }
+      },
+      "verify": "Checked: the page, filters and dates on screen match what I intended."
+    }
+  },
+  {
+    "question": "Why did South revenue drop in August?",
+    "result": {
+      "kind": "act",
+      "intent": "why",
+      "target_state": {
+        "page_id": "sales.regional.south",
+        "filters": {
+          "region": [
+            "South"
+          ]
+        },
+        "date_range": {
+          "start": "2026-08-01",
+          "end": "2026-08-31",
+          "label": "Aug 2026"
+        },
+        "compare": "custom",
+        "compare_range": {
+          "start": "2026-07-01",
+          "end": "2026-07-31",
+          "label": "Jul 2026"
+        },
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verify": "Checked: the page, filters and dates on screen match what I intended."
+    }
+  },
+  {
+    "question": "save this view",
+    "result": {
+      "kind": "confirm",
+      "intent": "save_view",
+      "target_state": null,
+      "verify": ""
+    }
+  },
+  {
+    "evidence_link": {
+      "page_id": "sales.regional.south",
+      "filters": {
+        "region": [
+          "South"
+        ]
+      },
+      "date_range": {
+        "start": "2026-08-01",
+        "end": "2026-08-31",
+        "label": "Aug 2026"
+      },
+      "compare": "custom",
+      "compare_range": {
+        "start": "2026-07-01",
+        "end": "2026-07-31",
+        "label": "Jul 2026"
+      },
+      "sort": {
+        "field": "revenue",
+        "dir": "desc"
+      },
+      "top_n": 25,
+      "grain": "auto"
+    }
+  },
+  {
+    "saved_view_reopened": {
+      "page_id": "sales.regional.south",
+      "filters": {
+        "region": [
+          "South"
+        ]
+      },
+      "date_range": {
+        "start": "2026-08-01",
+        "end": "2026-08-31",
+        "label": "Aug 2026"
+      },
+      "compare": "custom",
+      "compare_range": {
+        "start": "2026-07-01",
+        "end": "2026-07-31",
+        "label": "Jul 2026"
+      },
+      "sort": {
+        "field": "revenue",
+        "dir": "desc"
+      },
+      "top_n": 25,
+      "grain": "auto"
+    }
+  }
+]

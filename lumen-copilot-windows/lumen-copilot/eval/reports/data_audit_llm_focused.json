@@ -1,0 +1,1331 @@
+{
+  "generated_at": "2026-10-11T04:43:10.775904+00:00",
+  "source_hash": "77ddd1eae46637781fd2945292ce97eb86253fe9b6a5937cc9471796ba50eb6f",
+  "author": "Agent-authored regression audit; not fresh human holdout",
+  "mode": "llm",
+  "configuration": {
+    "mode": "llm",
+    "configured": true,
+    "provider": "groq",
+    "model": "openai/gpt-oss-20b",
+    "endpoint": "https://api.groq.com/openai/v1",
+    "timeout_seconds": "60",
+    "configuration_only": true
+  },
+  "n": 6,
+  "passed": 6,
+  "successful_model_requests": 5,
+  "cases": [
+    {
+      "id": "sales.avg",
+      "question": "Which month revenue is more than avg revenue in total",
+      "expected": {
+        "id": "sales.avg",
+        "question": "Which month revenue is more than avg revenue in total",
+        "view": "sales",
+        "metric": "revenue",
+        "analysis": "monthly_average",
+        "grain": "month"
+      },
+      "passed": true,
+      "checks": {
+        "kind": true,
+        "destination_view": true,
+        "metric": true,
+        "analysis": true,
+        "grain": true,
+        "verification": true,
+        "calculation": true,
+        "evidence": true
+      },
+      "understanding": {
+        "node": "understand",
+        "ms": 2929.2,
+        "source": "llm",
+        "intent": "trend",
+        "model_request_status": "succeeded",
+        "model_error": null,
+        "model_configuration": {
+          "mode": "llm",
+          "configured": true,
+          "provider": "groq",
+          "model": "openai/gpt-oss-20b",
+          "endpoint": "https://api.groq.com/openai/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [],
+          "time": "Last 90 days",
+          "typos_fixed": [
+            [
+              "avg",
+              "average"
+            ]
+          ],
+          "followup": false
+        }
+      },
+      "model_success": true,
+      "target_state": {
+        "page_id": "finance.reports.monthly",
+        "filters": {},
+        "date_range": {
+          "start": "2026-08-01",
+          "end": "2026-09-30",
+          "label": "Aug 2026 \u2013 Sep 2026"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "month"
+      },
+      "reply": "Average monthly revenue in Aug 2026 \u2013 Sep 2026: **\u20b940.89 Cr**.\nThis is the arithmetic mean of complete calendar-month totals, including zero-activity months.\nMonths strictly above this average:\n- **Sep 2026**: \u20b942.63 Cr\n_Note: Excluded partial edge months so the average compares complete calendar months._",
+      "numeric": [
+        {
+          "fact": "f2",
+          "ok": true,
+          "actual": 391463283.53,
+          "expected": 391463283.529998,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-08-01",
+            "2026-08-31"
+          ]
+        },
+        {
+          "fact": "f3",
+          "ok": true,
+          "actual": 426265269.75,
+          "expected": 426265269.7499966,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-09-01",
+            "2026-09-30"
+          ]
+        },
+        {
+          "check": "monthly arithmetic mean including zero months",
+          "ok": true,
+          "actual": 408864276.64,
+          "expected": 408864276.6399973
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "diff": [],
+        "scope": "backend consistency; browser not run"
+      },
+      "latency_ms": 2989.2
+    },
+    {
+      "id": "sales.typo",
+      "question": "which moths revenue is more than avegare in 2026",
+      "expected": {
+        "id": "sales.typo",
+        "question": "which moths revenue is more than avegare in 2026",
+        "view": "sales",
+        "metric": "revenue",
+        "analysis": "monthly_average",
+        "grain": "month",
+        "dates": [
+          "2026-01-01",
+          "2026-09-30"
+        ]
+      },
+      "passed": true,
+      "checks": {
+        "kind": true,
+        "destination_view": true,
+        "metric": true,
+        "analysis": true,
+        "grain": true,
+        "dates": true,
+        "verification": true,
+        "calculation": true,
+        "evidence": true
+      },
+      "understanding": {
+        "node": "understand",
+        "ms": 1932.8,
+        "source": "llm",
+        "intent": "trend",
+        "model_request_status": "succeeded",
+        "model_error": null,
+        "model_configuration": {
+          "mode": "llm",
+          "configured": true,
+          "provider": "groq",
+          "model": "openai/gpt-oss-20b",
+          "endpoint": "https://api.groq.com/openai/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [],
+          "time": "2026",
+          "typos_fixed": [
+            [
+              "avegare",
+              "average"
+            ],
+            [
+              "moths",
+              "months"
+            ]
+          ],
+          "followup": false
+        }
+      },
+      "model_success": true,
+      "target_state": {
+        "page_id": "finance.reports.monthly",
+        "filters": {},
+        "date_range": {
+          "start": "2026-01-01",
+          "end": "2026-09-30",
+          "label": "Jan 2026 \u2013 Sep 2026"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "month"
+      },
+      "reply": "Average monthly revenue in Jan 2026 \u2013 Sep 2026: **\u20b941.47 Cr**.\nThis is the arithmetic mean of complete calendar-month totals, including zero-activity months.\nMonths strictly above this average:\n- **Mar 2026**: \u20b953.33 Cr\n- **May 2026**: \u20b947.00 Cr\n- **Sep 2026**: \u20b942.63 Cr\n_Note: Data is only available from 01 Jan 2025 to 30 Sep 2026, so I limited the range to Jan 2026 \u2013 Sep 2026._",
+      "numeric": [
+        {
+          "fact": "f2",
+          "ok": true,
+          "actual": 381429116.9,
+          "expected": 381429116.8999996,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-01-01",
+            "2026-01-31"
+          ]
+        },
+        {
+          "fact": "f3",
+          "ok": true,
+          "actual": 340084127.46,
+          "expected": 340084127.4599985,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-02-01",
+            "2026-02-28"
+          ]
+        },
+        {
+          "fact": "f4",
+          "ok": true,
+          "actual": 533279352.91,
+          "expected": 533279352.90999526,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-03-01",
+            "2026-03-31"
+          ]
+        },
+        {
+          "fact": "f5",
+          "ok": true,
+          "actual": 384536349.48,
+          "expected": 384536349.4799992,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-04-01",
+            "2026-04-30"
+          ]
+        },
+        {
+          "fact": "f6",
+          "ok": true,
+          "actual": 470002250.82,
+          "expected": 470002250.8200022,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-05-01",
+            "2026-05-31"
+          ]
+        },
+        {
+          "fact": "f7",
+          "ok": true,
+          "actual": 392072274.27,
+          "expected": 392072274.2699994,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-06-01",
+            "2026-06-30"
+          ]
+        },
+        {
+          "fact": "f8",
+          "ok": true,
+          "actual": 413590194.75,
+          "expected": 413590194.7500008,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-07-01",
+            "2026-07-31"
+          ]
+        },
+        {
+          "fact": "f9",
+          "ok": true,
+          "actual": 391463283.53,
+          "expected": 391463283.529998,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-08-01",
+            "2026-08-31"
+          ]
+        },
+        {
+          "fact": "f10",
+          "ok": true,
+          "actual": 426265269.75,
+          "expected": 426265269.7499966,
+          "sql": "SELECT SUM(revenue) FROM sales_daily WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2026-09-01",
+            "2026-09-30"
+          ]
+        },
+        {
+          "check": "monthly arithmetic mean including zero months",
+          "ok": true,
+          "actual": 414746913.3189,
+          "expected": 414746913.3188877
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "diff": [],
+        "scope": "backend consistency; browser not run"
+      },
+      "latency_ms": 1959.8
+    },
+    {
+      "id": "retail.monthly",
+      "question": "Show monthly revenue for 2011",
+      "expected": {
+        "id": "retail.monthly",
+        "question": "Show monthly revenue for 2011",
+        "view": "retail",
+        "metric": "revenue",
+        "dates": [
+          "2011-01-01",
+          "2011-12-09"
+        ],
+        "analysis": "trend",
+        "grain": "month"
+      },
+      "passed": true,
+      "checks": {
+        "kind": true,
+        "destination_view": true,
+        "metric": true,
+        "analysis": true,
+        "grain": true,
+        "dates": true,
+        "verification": true,
+        "calculation": true,
+        "evidence": true
+      },
+      "understanding": {
+        "node": "understand",
+        "ms": 1264.8,
+        "source": "llm",
+        "intent": "trend",
+        "model_request_status": "succeeded",
+        "model_error": null,
+        "model_configuration": {
+          "mode": "llm",
+          "configured": true,
+          "provider": "groq",
+          "model": "openai/gpt-oss-20b",
+          "endpoint": "https://api.groq.com/openai/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [],
+          "time": "2011",
+          "typos_fixed": [],
+          "followup": false
+        }
+      },
+      "model_success": true,
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-01-01",
+          "end": "2011-12-09",
+          "label": "01 Jan 2011 \u2013 09 Dec 2011"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "month"
+      },
+      "reply": "**Revenue (GBP)** fell (-7.5%) from GBP 689,811.61 (Jan 2011) to **GBP 637,808.33** (Dec 2011 (partial)), by month. Peak: GBP 1,503,866.78 (Nov 2011); low: GBP 522,545.56 (Feb 2011). Unusual points: spike in Oct 2011 (GBP 1,151,263.73); spike in Nov 2011 (GBP 1,503,866.78).\n_Note: Data is only available from 01 Dec 2009 to 09 Dec 2011, so I limited the range to 01 Jan 2011 \u2013 09 Dec 2011._\n_Note: Edge months are partial. Compare complete months before interpreting a full-month revenue change._\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._",
+      "numeric": [
+        {
+          "fact": "f1",
+          "ok": true,
+          "actual": 689811.61,
+          "expected": 689811.6100000106,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-01-01",
+            "2011-01-31"
+          ]
+        },
+        {
+          "fact": "f2",
+          "ok": true,
+          "actual": 522545.56,
+          "expected": 522545.56000002776,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-02-01",
+            "2011-02-28"
+          ]
+        },
+        {
+          "fact": "f3",
+          "ok": true,
+          "actual": 716215.26,
+          "expected": 716215.2600000256,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-03-01",
+            "2011-03-31"
+          ]
+        },
+        {
+          "fact": "f4",
+          "ok": true,
+          "actual": 536968.491,
+          "expected": 536968.4910000239,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-04-01",
+            "2011-04-30"
+          ]
+        },
+        {
+          "fact": "f5",
+          "ok": true,
+          "actual": 769296.61,
+          "expected": 769296.6100000105,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-05-01",
+            "2011-05-31"
+          ]
+        },
+        {
+          "fact": "f6",
+          "ok": true,
+          "actual": 760547.01,
+          "expected": 760547.0100000228,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-06-01",
+            "2011-06-30"
+          ]
+        },
+        {
+          "fact": "f7",
+          "ok": true,
+          "actual": 718076.121,
+          "expected": 718076.1210000161,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-07-01",
+            "2011-07-31"
+          ]
+        },
+        {
+          "fact": "f8",
+          "ok": true,
+          "actual": 757841.38,
+          "expected": 757841.3800000151,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-08-01",
+            "2011-08-31"
+          ]
+        },
+        {
+          "fact": "f9",
+          "ok": true,
+          "actual": 1056435.192,
+          "expected": 1056435.1919999998,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-09-01",
+            "2011-09-30"
+          ]
+        },
+        {
+          "fact": "f10",
+          "ok": true,
+          "actual": 1151263.73,
+          "expected": 1151263.730000027,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-10-01",
+            "2011-10-31"
+          ]
+        },
+        {
+          "fact": "f11",
+          "ok": true,
+          "actual": 1503866.78,
+          "expected": 1503866.7799997486,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30"
+          ]
+        },
+        {
+          "fact": "f12",
+          "ok": true,
+          "actual": 637808.33,
+          "expected": 637808.3300000125,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-12-01",
+            "2011-12-09"
+          ]
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "diff": [],
+        "scope": "backend consistency; browser not run"
+      },
+      "latency_ms": 1313.9
+    },
+    {
+      "id": "retail.top",
+      "question": "Top 5 countries by revenue in 2011",
+      "expected": {
+        "id": "retail.top",
+        "question": "Top 5 countries by revenue in 2011",
+        "view": "retail",
+        "metric": "revenue",
+        "dates": [
+          "2011-01-01",
+          "2011-12-09"
+        ],
+        "analysis": "rank",
+        "top_n": 5,
+        "group": "country",
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        }
+      },
+      "passed": true,
+      "checks": {
+        "kind": true,
+        "destination_view": true,
+        "metric": true,
+        "analysis": true,
+        "top_n": true,
+        "sort": true,
+        "dates": true,
+        "dimension": true,
+        "verification": true,
+        "calculation": true,
+        "evidence": true
+      },
+      "understanding": {
+        "node": "understand",
+        "ms": 1252.1,
+        "source": "llm",
+        "intent": "query",
+        "model_request_status": "succeeded",
+        "model_error": null,
+        "model_configuration": {
+          "mode": "llm",
+          "configured": true,
+          "provider": "groq",
+          "model": "openai/gpt-oss-20b",
+          "endpoint": "https://api.groq.com/openai/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [
+            "country"
+          ],
+          "time": "2011",
+          "typos_fixed": [],
+          "followup": false
+        }
+      },
+      "model_success": true,
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-01-01",
+          "end": "2011-12-09",
+          "label": "01 Jan 2011 \u2013 09 Dec 2011"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 5,
+        "grain": "auto"
+      },
+      "reply": "Top 5 countries by revenue (gbp) (01 Jan 2011 \u2013 09 Dec 2011):\n1. **United Kingdom**: GBP 8,255,661.87 (84.1%)\n2. **Netherlands**: GBP 276,661.86 (2.8%)\n3. **EIRE**: GBP 273,107.26 (2.8%)\n4. **Germany**: GBP 213,472.66 (2.2%)\n5. **France**: GBP 200,027.06 (2.0%)\n_Note: Data is only available from 01 Dec 2009 to 09 Dec 2011, so I limited the range to 01 Jan 2011 \u2013 09 Dec 2011._\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._",
+      "numeric": [
+        {
+          "fact": "f1",
+          "ok": true,
+          "actual": 8255661.874,
+          "expected": 8255661.873998462,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-01-01",
+            "2011-12-09",
+            "United Kingdom"
+          ]
+        },
+        {
+          "fact": "f3",
+          "ok": true,
+          "actual": 276661.86,
+          "expected": 276661.85999999975,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-01-01",
+            "2011-12-09",
+            "Netherlands"
+          ]
+        },
+        {
+          "fact": "f5",
+          "ok": true,
+          "actual": 273107.26,
+          "expected": 273107.2599999997,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-01-01",
+            "2011-12-09",
+            "EIRE"
+          ]
+        },
+        {
+          "fact": "f7",
+          "ok": true,
+          "actual": 213472.66,
+          "expected": 213472.66000000027,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-01-01",
+            "2011-12-09",
+            "Germany"
+          ]
+        },
+        {
+          "fact": "f9",
+          "ok": true,
+          "actual": 200027.06,
+          "expected": 200027.06000000023,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-01-01",
+            "2011-12-09",
+            "France"
+          ]
+        },
+        {
+          "check": "ranking membership, order and values",
+          "ok": true,
+          "expected": [
+            [
+              "United Kingdom",
+              8255661.873998462
+            ],
+            [
+              "Netherlands",
+              276661.85999999975
+            ],
+            [
+              "EIRE",
+              273107.2599999997
+            ],
+            [
+              "Germany",
+              213472.66000000027
+            ],
+            [
+              "France",
+              200027.06000000026
+            ]
+          ],
+          "actual": [
+            "United Kingdom",
+            "Netherlands",
+            "EIRE",
+            "Germany",
+            "France"
+          ]
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "diff": [],
+        "scope": "backend consistency; browser not run"
+      },
+      "latency_ms": 1277.8
+    },
+    {
+      "id": "retail.period",
+      "question": "Compare revenue in two available months",
+      "expected": {
+        "id": "retail.period",
+        "question": "Compare revenue in two available months",
+        "view": "retail",
+        "metric": "revenue",
+        "analysis": "compare_periods",
+        "dates": [
+          "2011-11-01",
+          "2011-11-30"
+        ],
+        "comparison": [
+          "2011-10-01",
+          "2011-10-31"
+        ]
+      },
+      "passed": true,
+      "checks": {
+        "kind": true,
+        "destination_view": true,
+        "metric": true,
+        "analysis": true,
+        "dates": true,
+        "comparison": true,
+        "verification": true,
+        "calculation": true,
+        "evidence": true
+      },
+      "understanding": {
+        "node": "understand",
+        "ms": 1386.7,
+        "source": "llm",
+        "intent": "compare",
+        "model_request_status": "succeeded",
+        "model_error": null,
+        "model_configuration": {
+          "mode": "llm",
+          "configured": true,
+          "provider": "groq",
+          "model": "openai/gpt-oss-20b",
+          "endpoint": "https://api.groq.com/openai/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [],
+          "time": "Nov 2011",
+          "typos_fixed": [],
+          "followup": false
+        }
+      },
+      "model_success": true,
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-11-01",
+          "end": "2011-11-30",
+          "label": "Nov 2011"
+        },
+        "compare": "custom",
+        "compare_range": {
+          "start": "2011-10-01",
+          "end": "2011-10-31",
+          "label": "Oct 2011"
+        },
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "reply": "**Revenue (GBP)**: **GBP 1,503,866.78** in Nov 2011 vs **GBP 1,151,263.73** in Oct 2011 (\u25b2 +30.6%, +GBP 352,603.05).\nBiggest movers by country: United Kingdom +41.1%; Netherlands -36.4%; Australia -57.8%.\nNumerical contributors to the change: United Kingdom: GBP 384,529.93; Netherlands: GBP -14,834.64; Australia: GBP -9,907.81; Singapore: GBP -7,067.32; Japan: GBP 6,512.04.\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._",
+      "numeric": [
+        {
+          "fact": "f1",
+          "ok": true,
+          "actual": 1503866.78,
+          "expected": 1503866.7799997486,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30"
+          ]
+        },
+        {
+          "fact": "f2",
+          "ok": true,
+          "actual": 1151263.73,
+          "expected": 1151263.730000027,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-10-01",
+            "2011-10-31"
+          ]
+        },
+        {
+          "fact": "f6",
+          "ok": true,
+          "actual": 1319934.07,
+          "expected": 1319934.0699998417,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "United Kingdom"
+          ]
+        },
+        {
+          "fact": "f9",
+          "ok": true,
+          "actual": 31696.37,
+          "expected": 31696.37000000002,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "France"
+          ]
+        },
+        {
+          "fact": "f12",
+          "ok": true,
+          "actual": 30713.43,
+          "expected": 30713.430000000004,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "EIRE"
+          ]
+        },
+        {
+          "fact": "f15",
+          "ok": true,
+          "actual": 27967.68,
+          "expected": 27967.679999999975,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Germany"
+          ]
+        },
+        {
+          "fact": "f18",
+          "ok": true,
+          "actual": 25874.01,
+          "expected": 25874.01,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Netherlands"
+          ]
+        },
+        {
+          "fact": "f21",
+          "ok": true,
+          "actual": 8669.06,
+          "expected": 8669.059999999998,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Spain"
+          ]
+        },
+        {
+          "fact": "f24",
+          "ok": true,
+          "actual": 8460.08,
+          "expected": 8460.08,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Japan"
+          ]
+        },
+        {
+          "fact": "f27",
+          "ok": true,
+          "actual": 8118.96,
+          "expected": 8118.959999999995,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Switzerland"
+          ]
+        },
+        {
+          "fact": "f30",
+          "ok": true,
+          "actual": 7242.72,
+          "expected": 7242.719999999999,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Australia"
+          ]
+        },
+        {
+          "fact": "f33",
+          "ok": true,
+          "actual": 6527.5,
+          "expected": 6527.5,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Norway"
+          ]
+        },
+        {
+          "fact": "f36",
+          "ok": true,
+          "actual": 6315.76,
+          "expected": 6315.76,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Belgium"
+          ]
+        },
+        {
+          "fact": "f39",
+          "ok": true,
+          "actual": 4571.08,
+          "expected": 4571.080000000001,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Italy"
+          ]
+        },
+        {
+          "fact": "f42",
+          "ok": true,
+          "actual": 3070.24,
+          "expected": 3070.239999999999,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Finland"
+          ]
+        },
+        {
+          "fact": "f45",
+          "ok": true,
+          "actual": 2722.23,
+          "expected": 2722.23,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Sweden"
+          ]
+        },
+        {
+          "fact": "f48",
+          "ok": true,
+          "actual": 2699.57,
+          "expected": 2699.570000000001,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Denmark"
+          ]
+        },
+        {
+          "fact": "f51",
+          "ok": true,
+          "actual": 2603.3,
+          "expected": 2603.3000000000006,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Portugal"
+          ]
+        },
+        {
+          "fact": "f54",
+          "ok": true,
+          "actual": 1514.77,
+          "expected": 1514.7700000000004,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Channel Islands"
+          ]
+        },
+        {
+          "fact": "f57",
+          "ok": true,
+          "actual": 1361.23,
+          "expected": 1361.2299999999998,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Poland"
+          ]
+        },
+        {
+          "fact": "f58",
+          "ok": true,
+          "actual": 1329.78,
+          "expected": 1329.7799999999997,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Austria"
+          ]
+        },
+        {
+          "fact": "f61",
+          "ok": true,
+          "actual": 965.75,
+          "expected": 965.7500000000001,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Unspecified"
+          ]
+        },
+        {
+          "fact": "f62",
+          "ok": true,
+          "actual": 743.43,
+          "expected": 743.43,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Malta"
+          ]
+        },
+        {
+          "fact": "f63",
+          "ok": true,
+          "actual": 439.66,
+          "expected": 439.65999999999997,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Cyprus"
+          ]
+        },
+        {
+          "fact": "f66",
+          "ok": true,
+          "actual": 326.1,
+          "expected": 326.1,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ? AND \"country\" IN (?)",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30",
+            "Hong Kong"
+          ]
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "diff": [],
+        "scope": "backend consistency; browser not run"
+      },
+      "latency_ms": 1436.7
+    },
+    {
+      "id": "retail.mean",
+      "question": "Which months had revenue more than avg in 2011?",
+      "expected": {
+        "id": "retail.mean",
+        "question": "Which months had revenue more than avg in 2011?",
+        "view": "retail",
+        "metric": "revenue",
+        "analysis": "monthly_average",
+        "grain": "month",
+        "dates": [
+          "2011-01-01",
+          "2011-11-30"
+        ]
+      },
+      "passed": true,
+      "checks": {
+        "kind": true,
+        "destination_view": true,
+        "metric": true,
+        "analysis": true,
+        "grain": true,
+        "dates": true,
+        "verification": true,
+        "calculation": true,
+        "evidence": true
+      },
+      "understanding": {
+        "node": "understand",
+        "ms": 2954.3,
+        "source": "rules",
+        "intent": "trend",
+        "model_request_status": "failed_fallback_to_rules",
+        "model_error": "Client error '400 Bad Request' for url 'https://api.groq.com/openai/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400",
+        "model_configuration": {
+          "mode": "llm",
+          "configured": true,
+          "provider": "groq",
+          "model": "openai/gpt-oss-20b",
+          "endpoint": "https://api.groq.com/openai/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [],
+          "time": "2011",
+          "typos_fixed": [
+            [
+              "avg",
+              "average"
+            ]
+          ],
+          "followup": false
+        }
+      },
+      "model_success": false,
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-01-01",
+          "end": "2011-11-30",
+          "label": "Jan 2011 \u2013 Nov 2011"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "month"
+      },
+      "reply": "Average monthly revenue (gbp) in Jan 2011 \u2013 Nov 2011: **GBP 834,806.16**.\nThis is the arithmetic mean of complete calendar-month totals, including zero-activity months.\nMonths strictly above this average:\n- **Sep 2011**: GBP 1,056,435.19\n- **Oct 2011**: GBP 1,151,263.73\n- **Nov 2011**: GBP 1,503,866.78\n_Note: Data is only available from 01 Dec 2009 to 09 Dec 2011, so I limited the range to 01 Jan 2011 \u2013 09 Dec 2011._\n_Note: Excluded partial edge months so the average compares complete calendar months._\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._",
+      "numeric": [
+        {
+          "fact": "f2",
+          "ok": true,
+          "actual": 689811.61,
+          "expected": 689811.6100000106,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-01-01",
+            "2011-01-31"
+          ]
+        },
+        {
+          "fact": "f3",
+          "ok": true,
+          "actual": 522545.56,
+          "expected": 522545.56000002776,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-02-01",
+            "2011-02-28"
+          ]
+        },
+        {
+          "fact": "f4",
+          "ok": true,
+          "actual": 716215.26,
+          "expected": 716215.2600000256,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-03-01",
+            "2011-03-31"
+          ]
+        },
+        {
+          "fact": "f5",
+          "ok": true,
+          "actual": 536968.491,
+          "expected": 536968.4910000239,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-04-01",
+            "2011-04-30"
+          ]
+        },
+        {
+          "fact": "f6",
+          "ok": true,
+          "actual": 769296.61,
+          "expected": 769296.6100000105,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-05-01",
+            "2011-05-31"
+          ]
+        },
+        {
+          "fact": "f7",
+          "ok": true,
+          "actual": 760547.01,
+          "expected": 760547.0100000228,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-06-01",
+            "2011-06-30"
+          ]
+        },
+        {
+          "fact": "f8",
+          "ok": true,
+          "actual": 718076.121,
+          "expected": 718076.1210000161,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-07-01",
+            "2011-07-31"
+          ]
+        },
+        {
+          "fact": "f9",
+          "ok": true,
+          "actual": 757841.38,
+          "expected": 757841.3800000151,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-08-01",
+            "2011-08-31"
+          ]
+        },
+        {
+          "fact": "f10",
+          "ok": true,
+          "actual": 1056435.192,
+          "expected": 1056435.1919999998,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-09-01",
+            "2011-09-30"
+          ]
+        },
+        {
+          "fact": "f11",
+          "ok": true,
+          "actual": 1151263.73,
+          "expected": 1151263.730000027,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-10-01",
+            "2011-10-31"
+          ]
+        },
+        {
+          "fact": "f12",
+          "ok": true,
+          "actual": 1503866.78,
+          "expected": 1503866.7799997486,
+          "sql": "SELECT SUM(revenue) FROM uci_sales WHERE date BETWEEN ? AND ?",
+          "parameters": [
+            "2011-11-01",
+            "2011-11-30"
+          ]
+        },
+        {
+          "check": "monthly arithmetic mean including zero months",
+          "ok": true,
+          "actual": 834806.1585,
+          "expected": 834806.158545448
+        }
+      ],
+      "verification": {
+        "ok": true,
+        "diff": [],
+        "scope": "backend consistency; browser not run"
+      },
+      "latency_ms": 2977.3
+    }
+  ]
+}

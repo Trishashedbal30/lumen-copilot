@@ -1,0 +1,33 @@
+{
+ "generated_at": "2026-10-09 10:40:48",
+ "n": 89,
+ "destination_accuracy": [
+  0.9888,
+  89
+ ],
+ "ui_state_correctness": [
+  1.0,
+  89
+ ],
+ "dialogue_task_success": 1.0,
+ "verified_on_screen": 89,
+ "e2e_latency_p50_ms": 1211,
+ "e2e_latency_p95_ms": 1514,
+ "failures": [
+  {
+   "kind_ok": true,
+   "intent_ok": true,
+   "dest_ok": false,
+   "dest_strict": false,
+   "filters_ok": true,
+   "date_ok": true,
+   "compare_ok": null,
+   "sort_ok": null,
+   "topn_ok": null,
+   "state_ok": true,
+   "id": "b021",
+   "utterance": "revenue for the electronics category in hyderabad last month",
+   "verified": "Checked: the page, filters and dates on screen match what I intended."
+  }
+ ]
+}

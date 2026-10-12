@@ -1,0 +1,118 @@
+{
+  "generated_at": "2026-10-11T05:34:31.065893+00:00",
+  "source_hash": "f1972845afd70c38b7978ca93b120bf0ada31b70a4c21997bb9a60d8f583cf2d",
+  "scope": "Real Chromium save confirmation, storage persistence, dataset selector and applied state",
+  "passed": 2,
+  "cases": [
+    {
+      "dataset": "synthetic",
+      "question": "Top 5 cities by revenue in August 2026",
+      "decline_saved_nothing": true,
+      "confirmation_saved": true,
+      "persisted_after_reload": true,
+      "restored_state": {
+        "page_id": "sales.city.leaderboard",
+        "filters": {},
+        "date_range": {
+          "start": "2026-08-01",
+          "end": "2026-08-31",
+          "label": "Aug 2026"
+        },
+        "compare": "previous_period",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 5,
+        "grain": "auto"
+      },
+      "javascript_errors": [],
+      "understanding": {
+        "node": "understand",
+        "ms": 2.0,
+        "source": "rules",
+        "intent": "query",
+        "model_request_status": "not_requested",
+        "model_error": null,
+        "model_configuration": {
+          "mode": "rules",
+          "configured": true,
+          "provider": "groq",
+          "model": "openai/gpt-oss-20b",
+          "endpoint": "https://api.groq.com/openai/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [
+            "city"
+          ],
+          "time": "Aug 2026",
+          "typos_fixed": [],
+          "followup": false
+        }
+      }
+    },
+    {
+      "dataset": "retail",
+      "question": "Top 5 countries by revenue in 2011",
+      "decline_saved_nothing": true,
+      "confirmation_saved": true,
+      "persisted_after_reload": true,
+      "restored_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-01-01",
+          "end": "2011-12-09",
+          "label": "01 Jan 2011 \u2013 09 Dec 2011"
+        },
+        "compare": "previous_period",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 5,
+        "grain": "auto"
+      },
+      "javascript_errors": [],
+      "understanding": {
+        "node": "understand",
+        "ms": 1.4,
+        "source": "rules",
+        "intent": "query",
+        "model_request_status": "not_requested",
+        "model_error": null,
+        "model_configuration": {
+          "mode": "rules",
+          "configured": true,
+          "provider": "groq",
+          "model": "openai/gpt-oss-20b",
+          "endpoint": "https://api.groq.com/openai/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [
+            "country"
+          ],
+          "time": "2011",
+          "typos_fixed": [],
+          "followup": false
+        }
+      }
+    }
+  ]
+}

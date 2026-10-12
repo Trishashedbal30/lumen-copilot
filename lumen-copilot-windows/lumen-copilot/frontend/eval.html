@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evaluation · Lumen Copilot</title>
+<link rel="stylesheet" href="/static/styles.css">
+<style>
+  body { background: var(--mist); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 32px 28px 60px; }
+  .top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  h1 { font-family: var(--display); font-weight: 700; font-size: 34px; letter-spacing: -0.02em; margin: 0; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: 21px; margin: 40px 0 6px; }
+  .lede { color: var(--ink-2); max-width: 74ch; margin: 8px 0 0; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 22px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-l); overflow: hidden; }
+  .k { padding: 18px 20px; border-right: 1px solid var(--mist-2); border-bottom: 1px solid var(--mist-2); }
+  .k .name { font-size: 13px; color: var(--ink-2); }
+  .k .val { font-family: var(--display); font-size: 34px; font-weight: 600; letter-spacing: -0.02em; margin: 2px 0; }
+  .k .sub { font-size: 12.5px; color: var(--ink-3); }
+  .k.hero { background: var(--forest); color: #fff; }
+  .k.hero .name, .k.hero .sub { color: #b9d0c8; }
+  table { width: 100%; border-collapse: collapse; background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-m); overflow: hidden; font-size: 13.5px; }
+  th, td { padding: 9px 12px; border-bottom: 1px solid var(--mist-2); text-align: right; white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--ink-2); font-weight: 500; background: #f8faf9; }
+  .bar { display: inline-block; height: 8px; background: var(--moss); border-radius: 4px; vertical-align: middle; margin-left: 8px; }
+  .ok { color: var(--up); } .bad { color: var(--down); }
+  .note { font-size: 13px; color: var(--ink-2); max-width: 80ch; }
+  .fail { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-m); padding: 10px 12px; margin: 8px 0; font-size: 13px; }
+  .fail code { font-size: 12px; color: var(--ink-2); white-space: pre-wrap; }
+  a.back { color: var(--river); }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 760px) { .kpi-grid { grid-template-columns: 1fr; } .twocol { grid-template-columns: 1fr; } .wrap { padding: 20px 16px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><h1>How well does the copilot work?</h1><a class="back" href="/">Back to the app</a></div>
+  <p class="lede" id="lede">Loading the latest evaluation report…</p>
+  <div id="root"></div>
+</div>
+<script>
+const pc = (x) => (x == null || x[0] == null) ? "–" : (100 * x[0]).toFixed(1) + "%";
+const n = (x) => (x == null || x[1] == null) ? "" : `n = ${x[1]}`;
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+async function main() {
+  const res = await fetch("/api/eval/latest");
+  if (!res.ok) { document.getElementById("lede").textContent = "No report yet. Run: python -m eval.run_eval"; return; }
+  const r = await res.json();
+  const o = r.overall, b = r.splits.blind || {}, bf = r.blind_first_run, e2e = r.e2e_browser, an = r.analytical, dl = r.dialogues;
+  document.getElementById("lede").innerHTML = `Report generated ${esc(r.generated_at)} over ${o.requests} labelled requests, ${dl.n} multi-turn dialogues and ${an.n} root-cause questions against ${r.pages} pages. Mode: ${esc(r.engine.mode || "unspecified")}. The split named <strong>blind</strong> is reused after prior tuning, so it is not a fresh independent holdout. Its original first-run report is inherited evidence. Business data and anomalies are synthetic. Browser measurements appear only when a matching source report is available.`;
+  const retr = r.retrieval || {};
+  const best = retr["hybrid+structure (agent)"] || {};
+  let h = `<div class="kpi-grid">
+    <div class="k hero"><div class="name">Destination accuracy, reused blind set</div><div class="val">${pc(b.dest_ok)}</div><div class="sub">historical supplied first run: ${bf ? pc(bf.dest_ok) : "–"} · all splits ${pc(o.destination_accuracy)}</div></div>
+    <div class="k hero"><div class="name">UI-state correctness, real browser</div><div class="val">${e2e ? pc(e2e.ui_state_correctness) : "–"}</div><div class="sub">${e2e ? "Playwright drove the UI" : "Not rerun for this source"}${e2e ? ` · ${e2e.n} requests · ${e2e.verified_on_screen} verified on screen` : ""}</div></div>
+    <div class="k hero"><div class="name">Root cause found (planted anomalies)</div><div class="val">${pc(an.cause_top1)}</div><div class="sub">driver correct ${pc(an.driver_accuracy)} · direction ${pc(an.direction_accuracy)}</div></div>
+    <div class="k"><div class="name">UI-state correctness, all splits</div><div class="val">${pc(o.ui_state_correctness)}</div><div class="sub">filters ${pc(o.filter_correctness)} · dates ${pc(o.date_correctness)} · sort ${pc(o.sort_correctness)}</div></div>
+    <div class="k"><div class="name">Multi-turn task success</div><div class="val">${dl.task_success == null ? "–" : (100 * dl.task_success).toFixed(0) + "%"}</div><div class="sub">${dl.n} dialogues · turn accuracy ${(100 * dl.turn_accuracy).toFixed(1)}%${e2e && e2e.dialogue_task_success != null ? ` · browser ${(100 * e2e.dialogue_task_success).toFixed(0)}%` : ""}</div></div>
+    <div class="k"><div class="name">Explanation faithfulness</div><div class="val">${o.faithfulness == null ? "–" : (100 * o.faithfulness).toFixed(1) + "%"}</div><div class="sub">${o.faithfulness_numbers} figures in replies, each matched to an executed query</div></div>
+    <div class="k"><div class="name">Retrieval over 209 pages (MRR)</div><div class="val">${best.mrr ?? "–"}</div><div class="sub">Recall@1 ${best["recall@1"] ?? "–"} · plain hybrid search alone ${(retr.hybrid || {}).mrr ?? "–"}</div></div>
+    <div class="k"><div class="name">Action hallucination rate</div><div class="val">${o.action_hallucination_rate == null ? "–" : (100 * o.action_hallucination_rate).toFixed(1) + "%"}</div><div class="sub">unguarded baseline: ${(100 * o.unguarded_baseline_hallucination_rate).toFixed(1)}% invalid actions</div></div>
+    <div class="k"><div class="name">Agent latency</div><div class="val">${o.latency_p50_ms} ms</div><div class="sub">p95 ${o.latency_p95_ms} ms · ${o.avg_state_actions_per_request} UI actions per request${e2e ? ` · end-to-end with animation p50 ${e2e.e2e_latency_p50_ms} ms` : ""}</div></div>
+  </div>`;
+
+  h += `<h2>By evaluation set</h2><p class="note">Template cases are generated from slot templates (in-distribution). Dev cases were hand-written and used while building, so they are optimistic. Blind cases were hand-written up front and run once before fixes.</p>
+  <table><tr><th>Set</th><th>Requests</th><th>Intent</th><th>Destination</th><th>Destination (preferred page)</th><th>UI state</th><th>Date range</th></tr>`;
+  const rows = Object.entries(r.splits).map(([k, v]) => [k, v]);
+  if (bf) rows.push(["blind · first run, before fixes", bf]);
+  for (const [k, v] of rows) h += `<tr><td>${esc(k)}</td><td>${v.n}</td><td>${pc(v.intent_ok)}</td><td>${pc(v.dest_ok)}</td><td>${pc(v.dest_strict)}</td><td>${pc(v.state_ok)}</td><td>${pc(v.date_ok)}</td></tr>`;
+  h += `</table>`;
+
+  h += `<h2>Retrieval ablation</h2><p class="note">How often the right page is found among ${r.pages} pages. Text search alone confuses near-duplicate pages (the South page vs the South Electronics page); the knowledge-graph re-ranker adds view and metric binding, preset filters and breakdown dimensions.</p>
+  <table><tr><th>Ranker</th><th>MRR</th><th>Recall@1</th><th>Recall@5</th><th>Recall@10</th></tr>`;
+  for (const [k, v] of Object.entries(retr)) h += `<tr><td>${esc(k)}</td><td>${v.mrr}<span class="bar" style="width:${Math.round(v.mrr * 120)}px"></span></td><td>${v["recall@1"]}</td><td>${v["recall@5"]}</td><td>${v["recall@10"]}</td></tr>`;
+  h += `</table>`;
+
+  h += `<h2>Root-cause questions with known answers</h2><p class="note">Five anomalies were planted in the synthetic data with recorded causes (data/ground_truth.json). The agent must find the moving segment (driver) and the related signal in another data view (cause).</p>
+  <table><tr><th>Question</th><th>Direction</th><th>Driver found</th><th>Cause, top 1</th><th>Faithful</th></tr>`;
+  for (const a of an.rows) h += `<tr><td style="white-space:normal">${esc(a.question)}</td><td class="${a.direction_ok ? "ok" : "bad"}">${a.direction_ok ? "correct" : "wrong"}</td><td class="${a.driver_ok ? "ok" : "bad"}">${esc(a.driver || "none")}</td><td>${a.cause_top1 == null ? "n/a" : a.cause_top1 ? '<span class="ok">' + esc((a.causes[0] || []).join(".")) + "</span>" : '<span class="bad">missed</span>'}</td><td>${a.faithfulness == null ? "–" : (100 * a.faithfulness).toFixed(0) + "%"}</td></tr>`;
+  h += `</table>`;
+
+  h += `<h2>Live session</h2><div id="live" class="note">Loading…</div>`;
+  h += `<h2>Remaining failures (${r.failures.length})</h2>`;
+  if (!r.failures.length) h += `<p class="note">None in the current run.</p>`;
+  for (const f of r.failures.slice(0, 40)) h += `<div class="fail"><strong>${esc(f.utterance)}</strong> · ${esc(f.split)} · failed ${esc(f.failed.join(", "))}<br><code>expected ${esc(JSON.stringify({ pages: f.expected.pages, filters: f.expected.filters }))}\ngot      ${esc(JSON.stringify({ page: f.got.page, filters: f.got.filters }))}</code></div>`;
+  document.getElementById("root").innerHTML = h;
+  try {
+    const l = await (await fetch("/api/kpis/live")).json();
+    document.getElementById("live").innerHTML = `Since the server started: ${l.turns} requests, ${l.state_changing_actions} UI actions, ${l.ui_state_verified} verified on screen (${l.ui_state_correctness == null ? "–" : (100 * l.ui_state_correctness).toFixed(1) + "%"} matched), ${l.blocked_invalid_actions} invalid actions blocked, ${l.clarifications} clarifying questions, ${l.refusals} refusals, latency p50 ${l.latency_p50_ms ?? "–"} ms.`;
+  } catch (e) { document.getElementById("live").textContent = "Live counters unavailable."; }
+}
+main();
+</script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+[
+  {
+    "question": "Show monthly revenue for 2011",
+    "result": {
+      "kind": "act",
+      "intent": "trend",
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-01-01",
+          "end": "2011-12-09",
+          "label": "01 Jan 2011 \u2013 09 Dec 2011"
+        },
+        "compare": "previous_period",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "month"
+      },
+      "verify": "Checked: page, filters, dates, comparison, sort, top-N and grain match the intended state."
+    }
+  },
+  {
+    "question": "Top 5 countries by revenue in 2011",
+    "result": {
+      "kind": "act",
+      "intent": "query",
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-01-01",
+          "end": "2011-12-09",
+          "label": "01 Jan 2011 \u2013 09 Dec 2011"
+        },
+        "compare": "previous_period",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 5,
+        "grain": "auto"
+      },
+      "verify": "Checked: page, filters, dates, comparison, sort, top-N and grain match the intended state."
+    }
+  },
+  {
+    "question": "Top 5 products by revenue in 2011",
+    "result": {
+      "kind": "act",
+      "intent": "query",
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-01-01",
+          "end": "2011-12-09",
+          "label": "01 Jan 2011 \u2013 09 Dec 2011"
+        },
+        "compare": "previous_period",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 5,
+        "grain": "auto"
+      },
+      "verify": "Checked: page, filters, dates, comparison, sort, top-N and grain match the intended state."
+    }
+  },
+  {
+    "question": "Compare revenue in two available months",
+    "result": {
+      "kind": "act",
+      "intent": "compare",
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-11-01",
+          "end": "2011-11-30",
+          "label": "Nov 2011"
+        },
+        "compare": "custom",
+        "compare_range": {
+          "start": "2011-10-01",
+          "end": "2011-10-31",
+          "label": "Oct 2011"
+        },
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verify": "Checked: page, filters, dates, comparison, sort, top-N and grain match the intended state."
+    }
+  },
+  {
+    "question": "Why did revenue change in November 2011 vs October 2011?",
+    "result": {
+      "kind": "act",
+      "intent": "why",
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-11-01",
+          "end": "2011-11-30",
+          "label": "Nov 2011"
+        },
+        "compare": "custom",
+        "compare_range": {
+          "start": "2011-10-01",
+          "end": "2011-10-31",
+          "label": "Oct 2011"
+        },
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verify": "Checked: page, filters, dates, comparison, sort, top-N and grain match the intended state."
+    }
+  },
+  {
+    "question": "what about France?",
+    "result": {
+      "kind": "act",
+      "intent": "show",
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {
+          "country": [
+            "France"
+          ]
+        },
+        "date_range": {
+          "start": "2011-11-01",
+          "end": "2011-11-30",
+          "label": "Nov 2011"
+        },
+        "compare": "custom",
+        "compare_range": {
+          "start": "2011-10-01",
+          "end": "2011-10-31",
+          "label": "Oct 2011"
+        },
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verify": "Checked: page, filters, dates, comparison, sort, top-N and grain match the intended state."
+    }
+  },
+  {
+    "question": "undo",
+    "result": {
+      "kind": "undo",
+      "intent": "undo",
+      "target_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-11-01",
+          "end": "2011-11-30",
+          "label": "Nov 2011"
+        },
+        "compare": "custom",
+        "compare_range": {
+          "start": "2011-10-01",
+          "end": "2011-10-31",
+          "label": "Oct 2011",
+          "preset": null
+        },
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto",
+        "cmp_range": {
+          "start": "2011-10-01",
+          "end": "2011-10-31",
+          "label": "Oct 2011",
+          "preset": null
+        }
+      },
+      "verify": "Checked: page, filters, dates, comparison, sort, top-N and grain match the intended state."
+    }
+  },
+  {
+    "question": "save this view",
+    "result": {
+      "kind": "confirm",
+      "intent": "save_view",
+      "target_state": null,
+      "verify": ""
+    }
+  },
+  {
+    "saved_view_reopened": true,
+    "javascript_errors": []
+  }
+]

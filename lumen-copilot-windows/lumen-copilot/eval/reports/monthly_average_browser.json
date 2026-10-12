@@ -1,0 +1,104 @@
+{
+  "generated_at": "2026-10-11T03:59:11.451950+00:00",
+  "source_hash": "bec6e93a70cb2f995e4af3a5e3ec64378c87c50d9e32165170bdb46ebef63e20",
+  "cases": [
+    {
+      "dataset": "synthetic",
+      "question": "in which month was the revenue more than average",
+      "latency_ms": 1871.8,
+      "reply": "Average monthly revenue in Aug 2026 \u2013 Sep 2026: **\u20b940.89 Cr**.\nThis is the arithmetic mean of complete calendar-month totals, including zero-activity months.\nMonths strictly above this average:\n- **Sep 2026**: \u20b942.63 Cr\n_Note: Excluded partial edge months so the average compares complete calendar months._",
+      "browser_state": {
+        "page_id": "finance.reports.monthly",
+        "filters": {},
+        "date_range": {
+          "start": "2026-08-01",
+          "end": "2026-09-30",
+          "label": "Aug 2026 \u2013 Sep 2026"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "month"
+      },
+      "mean": {
+        "id": "f1",
+        "label": "Arithmetic mean of complete monthly totals",
+        "value": 408864276.64,
+        "formatted": "\u20b940.89 Cr",
+        "fmt": "currency",
+        "view": "sales",
+        "metric": "revenue",
+        "filters": {},
+        "range": {
+          "start": "2026-08-01",
+          "end": "2026-09-30",
+          "label": "Aug 2026 \u2013 Sep 2026"
+        },
+        "sql": "WITH monthly AS (SELECT CAST(date_trunc('month', date) AS DATE) AS period, SUM(revenue) AS \"revenue\" FROM sales_daily WHERE date BETWEEN '2026-08-01' AND '2026-09-30' GROUP BY period ORDER BY period),\n      calendar AS (SELECT CAST(month AS DATE) AS period FROM generate_series(CAST('2026-08-01' AS DATE), CAST('2026-09-30' AS DATE), INTERVAL '1 month') AS t(month)),\n      monthly_values AS (SELECT calendar.period, COALESCE(monthly.\"revenue\", 0) AS monthly_value FROM calendar LEFT JOIN monthly USING (period))\n      SELECT period, monthly_value, AVG(monthly_value) OVER () AS monthly_average FROM monthly_values ORDER BY period",
+        "kind": "monthly_average",
+        "page_id": "finance.reports.monthly",
+        "dataset": "Synthetic Sahyadri Retail demo",
+        "metric_definition": "SUM(revenue)",
+        "calculation": "SUM(monthly totals) / number of complete calendar months; zero-activity months count as zero; strict comparison.",
+        "month_count": 2
+      },
+      "verification": "browser applied state checked",
+      "evidence_link": true
+    },
+    {
+      "dataset": "retail",
+      "question": "which months had revenue above average in 2011",
+      "latency_ms": 1347.2,
+      "reply": "Average monthly revenue (gbp) in Jan 2011 \u2013 Nov 2011: **GBP 834,806.16**.\nThis is the arithmetic mean of complete calendar-month totals, including zero-activity months.\nMonths strictly above this average:\n- **Sep 2011**: GBP 1,056,435.19\n- **Oct 2011**: GBP 1,151,263.73\n- **Nov 2011**: GBP 1,503,866.78\n_Note: Data is only available from 01 Dec 2009 to 09 Dec 2011, so I limited the range to 01 Jan 2011 \u2013 09 Dec 2011._\n_Note: Excluded partial edge months so the average compares complete calendar months._\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._",
+      "browser_state": {
+        "page_id": "uci.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2011-01-01",
+          "end": "2011-11-30",
+          "label": "Jan 2011 \u2013 Nov 2011"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "month"
+      },
+      "mean": {
+        "id": "f1",
+        "label": "Arithmetic mean of complete monthly totals",
+        "value": 834806.1585,
+        "formatted": "GBP 834,806.16",
+        "fmt": "gbp",
+        "view": "retail",
+        "metric": "revenue",
+        "filters": {},
+        "range": {
+          "start": "2011-01-01",
+          "end": "2011-11-30",
+          "label": "Jan 2011 \u2013 Nov 2011"
+        },
+        "sql": "WITH monthly AS (SELECT CAST(date_trunc('month', date) AS DATE) AS period, SUM(revenue) AS \"revenue\" FROM uci_sales WHERE date BETWEEN '2011-01-01' AND '2011-11-30' GROUP BY period ORDER BY period),\n      calendar AS (SELECT CAST(month AS DATE) AS period FROM generate_series(CAST('2011-01-01' AS DATE), CAST('2011-11-30' AS DATE), INTERVAL '1 month') AS t(month)),\n      monthly_values AS (SELECT calendar.period, COALESCE(monthly.\"revenue\", 0) AS monthly_value FROM calendar LEFT JOIN monthly USING (period))\n      SELECT period, monthly_value, AVG(monthly_value) OVER () AS monthly_average FROM monthly_values ORDER BY period",
+        "kind": "monthly_average",
+        "page_id": "uci.sales.overview",
+        "dataset": "UCI Online Retail II (imported source)",
+        "metric_definition": "Revenue is gross merchandise sales: SUM(Quantity * UnitPrice) in GBP for positive quantity and price, excluding C-prefixed cancellation invoices, returns (negative quantity), invalid dates/numbers, missing invoice/stock code/country, and exact duplicate source rows. Missing customer IDs are retained; missing descriptions use StockCode. No inferred VAT, margin, exchange rate, shipping, or external causal claims.",
+        "calculation": "SUM(monthly totals) / number of complete calendar months; zero-activity months count as zero; strict comparison.",
+        "month_count": 11
+      },
+      "verification": "browser applied state checked",
+      "evidence_link": true,
+      "independent_calculation": true,
+      "followup": true,
+      "undo": true
+    }
+  ],
+  "passed": 2
+}

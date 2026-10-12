@@ -1,0 +1,171 @@
+[
+  {
+    "id": "A1",
+    "title": "South revenue drop in August 2026",
+    "question_examples": [
+      "Why did South revenue drop in August?",
+      "what caused the dip in southern sales in aug 2026",
+      "explain the fall in South region revenue last August"
+    ],
+    "view": "sales",
+    "metric": "revenue",
+    "filters": {
+      "region": [
+        "South"
+      ]
+    },
+    "period": [
+      "2026-08-01",
+      "2026-08-31"
+    ],
+    "comparison": [
+      "2026-07-01",
+      "2026-07-31"
+    ],
+    "expected_direction": "down",
+    "expected_driver": {
+      "dimension": "category",
+      "value": "Electronics",
+      "accept": [
+        "Electronics"
+      ]
+    },
+    "expected_cause": {
+      "view": "inventory",
+      "metric": "stockout_days",
+      "explanation": "Electronics stockout at Chennai DC and Bengaluru DC, 4-26 Aug 2026"
+    }
+  },
+  {
+    "id": "A2",
+    "title": "Revenue surge in March 2026 (Mobile App)",
+    "question_examples": [
+      "Why did revenue spike in March 2026?",
+      "what drove the jump in sales in march"
+    ],
+    "view": "sales",
+    "metric": "revenue",
+    "filters": {},
+    "period": [
+      "2026-03-01",
+      "2026-03-31"
+    ],
+    "comparison": [
+      "2026-02-01",
+      "2026-02-28"
+    ],
+    "expected_direction": "up",
+    "expected_driver": {
+      "dimension": "channel",
+      "value": "Mobile App",
+      "accept": [
+        "Mobile App"
+      ]
+    },
+    "expected_cause": {
+      "view": "marketing",
+      "metric": "spend",
+      "explanation": "Spring Launch campaign tripled Social Media spend in March 2026"
+    }
+  },
+  {
+    "id": "A3",
+    "title": "West on-time delivery collapse, Jun-Jul 2026",
+    "question_examples": [
+      "Why did on-time delivery fall in the West in July?",
+      "what caused the drop in on-time delivery in west region in july 2026"
+    ],
+    "view": "delivery",
+    "metric": "on_time_pct",
+    "filters": {
+      "region": [
+        "West"
+      ]
+    },
+    "period": [
+      "2026-07-01",
+      "2026-07-31"
+    ],
+    "comparison": [
+      "2026-05-01",
+      "2026-05-31"
+    ],
+    "expected_direction": "down",
+    "expected_driver": {
+      "dimension": "warehouse",
+      "value": "Mumbai DC",
+      "accept": [
+        "Mumbai DC",
+        "Mumbai"
+      ]
+    },
+    "expected_cause": {
+      "view": "support",
+      "metric": "tickets",
+      "explanation": "Monsoon disruption at Mumbai DC and Ahmedabad DC; Delivery Delay tickets tripled"
+    }
+  },
+  {
+    "id": "A4",
+    "title": "Churn spike in August 2026 (Premium segment)",
+    "question_examples": [
+      "Why did churn go up in August?",
+      "what is driving the increase in customer churn in aug 2026"
+    ],
+    "view": "customers",
+    "metric": "churn_rate",
+    "filters": {},
+    "period": [
+      "2026-08-01",
+      "2026-08-31"
+    ],
+    "comparison": [
+      "2026-06-01",
+      "2026-06-30"
+    ],
+    "expected_direction": "up",
+    "expected_driver": {
+      "dimension": "segment",
+      "value": "Premium",
+      "accept": [
+        "Premium"
+      ]
+    },
+    "expected_cause": null
+  },
+  {
+    "id": "A5",
+    "title": "North Beauty growth, Sep 2026",
+    "question_examples": [
+      "Why did beauty sales grow in the North in September?",
+      "what drove north beauty revenue up in september"
+    ],
+    "view": "sales",
+    "metric": "revenue",
+    "filters": {
+      "region": [
+        "North"
+      ],
+      "category": [
+        "Beauty"
+      ]
+    },
+    "period": [
+      "2026-09-01",
+      "2026-09-30"
+    ],
+    "comparison": [
+      "2026-08-01",
+      "2026-08-31"
+    ],
+    "expected_direction": "up",
+    "expected_driver": {
+      "dimension": "product",
+      "value": "Skincare",
+      "accept": [
+        "Skincare"
+      ]
+    },
+    "expected_cause": null
+  }
+]

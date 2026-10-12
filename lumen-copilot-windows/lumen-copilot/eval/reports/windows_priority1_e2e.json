@@ -1,0 +1,34 @@
+{
+ "generated_at": "2026-10-10 23:42:26",
+ "source_hash": "72a6b2b6cfee47cdf6e7ba8ec88d57de092925fdd88a447a03fa75f7f1bfbc2e",
+ "n": 80,
+ "destination_accuracy": [
+  0.9875,
+  80
+ ],
+ "ui_state_correctness": [
+  1.0,
+  80
+ ],
+ "dialogue_task_success": 1.0,
+ "verified_on_screen": 80,
+ "e2e_latency_p50_ms": 1270,
+ "e2e_latency_p95_ms": 1597,
+ "failures": [
+  {
+   "kind_ok": true,
+   "intent_ok": true,
+   "dest_ok": false,
+   "dest_strict": false,
+   "filters_ok": true,
+   "date_ok": true,
+   "compare_ok": null,
+   "sort_ok": null,
+   "topn_ok": null,
+   "state_ok": true,
+   "id": "b021",
+   "utterance": "revenue for the electronics category in hyderabad last month",
+   "verified": "Checked: page, filters, dates, comparison, sort, top-N and grain match the intended state."
+  }
+ ]
+}

@@ -1,0 +1,444 @@
+{
+  "generated_at": "2026-10-11T05:36:35.904478+00:00",
+  "source_hash": "f1972845afd70c38b7978ca93b120bf0ada31b70a4c21997bb9a60d8f583cf2d",
+  "source_files": [
+    {
+      "file": "online_retail_II.xlsx",
+      "sha256": "bcbe73b35f5b7babf197fb0cb983a11f5d9ff929078d4aa53d171b1f2df2e980"
+    }
+  ],
+  "method": "Independent workbook/CSV parsing, boolean eligibility mask, Decimal quantity*price aggregation; no import helper or runtime SQL used for expected values.",
+  "duration_seconds": 166.83,
+  "checks": [
+    {
+      "check": "2009 retail_orders",
+      "actual": 1682,
+      "independent_expected": 1682,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 retail_quantity",
+      "actual": 425461,
+      "independent_expected": 425461.0,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 retail_aov",
+      "actual": 488.9916,
+      "independent_expected": 488.99164684898926,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer rank",
+      "actual": [
+        "18102",
+        "13694",
+        "14646",
+        "15061",
+        "14156",
+        "15311",
+        "17511",
+        "17850",
+        "13777",
+        "14911"
+      ],
+      "independent_expected": [
+        "18102",
+        "13694",
+        "14646",
+        "15061",
+        "14156",
+        "15311",
+        "17511",
+        "17850",
+        "13777",
+        "14911"
+      ],
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 18102",
+      "actual": 41005.74,
+      "independent_expected": 41005.74,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 13694",
+      "actual": 20427.91,
+      "independent_expected": 20427.91,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 14646",
+      "actual": 14696.47,
+      "independent_expected": 14696.47,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 15061",
+      "actual": 14312.54,
+      "independent_expected": 14312.54,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 14156",
+      "actual": 11051.22,
+      "independent_expected": 11051.22,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 15311",
+      "actual": 9364.29,
+      "independent_expected": 9364.29,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 17511",
+      "actual": 8367.81,
+      "independent_expected": 8367.81,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 17850",
+      "actual": 7411.14,
+      "independent_expected": 7411.14,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 13777",
+      "actual": 7125.04,
+      "independent_expected": 7125.04,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2009 customer 14911",
+      "actual": 7119.24,
+      "independent_expected": 7119.24,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 retail_orders",
+      "actual": 19994,
+      "independent_expected": 19994,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 retail_quantity",
+      "actual": 5565285,
+      "independent_expected": 5565285.0,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 retail_aov",
+      "actual": 491.8026,
+      "independent_expected": 491.8025619685906,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer rank",
+      "actual": [
+        "18102",
+        "14646",
+        "14156",
+        "14911",
+        "13694",
+        "16684",
+        "17511",
+        "15061",
+        "16754",
+        "13089"
+      ],
+      "independent_expected": [
+        "18102",
+        "14646",
+        "14156",
+        "14911",
+        "13694",
+        "16684",
+        "17511",
+        "15061",
+        "16754",
+        "13089"
+      ],
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 18102",
+      "actual": 308158.61,
+      "independent_expected": 308158.61,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 14646",
+      "actual": 242291.91,
+      "independent_expected": 242291.91,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 14156",
+      "actual": 185498.52,
+      "independent_expected": 185498.52,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 14911",
+      "actual": 148328.34,
+      "independent_expected": 148328.34,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 13694",
+      "actual": 113070.2,
+      "independent_expected": 113070.2,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 16684",
+      "actual": 80716.29,
+      "independent_expected": 80716.29,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 17511",
+      "actual": 79413.76,
+      "independent_expected": 79413.76,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 15061",
+      "actual": 77493.0,
+      "independent_expected": 77493.0,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 16754",
+      "actual": 65500.07,
+      "independent_expected": 65500.07,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2010 customer 13089",
+      "actual": 57479.54,
+      "independent_expected": 57479.54,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 retail_orders",
+      "actual": 18401,
+      "independent_expected": 18401,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 retail_quantity",
+      "actual": 5214402,
+      "independent_expected": 5214402.0,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 retail_aov",
+      "actual": 533.7034,
+      "independent_expected": 533.7033897070812,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer rank",
+      "actual": [
+        "14646",
+        "18102",
+        "17450",
+        "16446",
+        "14911",
+        "12415",
+        "14156",
+        "17511",
+        "12346",
+        "16029"
+      ],
+      "independent_expected": [
+        "14646",
+        "18102",
+        "17450",
+        "16446",
+        "14911",
+        "12415",
+        "14156",
+        "17511",
+        "12346",
+        "16029"
+      ],
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 14646",
+      "actual": 271614.14,
+      "independent_expected": 271614.14,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 18102",
+      "actual": 231822.69,
+      "independent_expected": 231822.69,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 17450",
+      "actual": 192361.95,
+      "independent_expected": 192361.95,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 16446",
+      "actual": 168472.5,
+      "independent_expected": 168472.5,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 14911",
+      "actual": 135973.23,
+      "independent_expected": 135973.23,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 12415",
+      "actual": 124914.53,
+      "independent_expected": 124914.53,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 14156",
+      "actual": 116887.88,
+      "independent_expected": 116887.88,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 17511",
+      "actual": 84351.3,
+      "independent_expected": 84351.3,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 12346",
+      "actual": 77183.6,
+      "independent_expected": 77183.6,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2011 customer 16029",
+      "actual": 67738.32,
+      "independent_expected": 67738.32,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "product contributor order",
+      "actual": [
+        "23084",
+        "DOT",
+        "22086",
+        "M",
+        "85123A"
+      ],
+      "independent_expected": [
+        "23084",
+        "DOT",
+        "22086",
+        "M",
+        "85123A"
+      ],
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "product contribution 23084",
+      "actual": 22221.53,
+      "independent_expected": 22221.53,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "product contribution DOT",
+      "actual": 18950.27,
+      "independent_expected": 18950.27,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "product contribution 22086",
+      "actual": 18933.0,
+      "independent_expected": 18933.0,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "product contribution M",
+      "actual": -17876.25,
+      "independent_expected": -17876.25,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "product contribution 85123A",
+      "actual": 9380.65,
+      "independent_expected": 9380.65,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "all product deltas reconcile",
+      "actual": 352603.05,
+      "independent_expected": 352603.05000000005,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "displayed contributions plus remainder reconcile",
+      "actual": 352603.05,
+      "independent_expected": 352603.05000000005,
+      "ok": true,
+      "tolerance": 0.005
+    }
+  ],
+  "passed": 50,
+  "total": 50
+}

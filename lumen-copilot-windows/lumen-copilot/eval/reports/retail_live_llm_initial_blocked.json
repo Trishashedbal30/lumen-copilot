@@ -1,0 +1,104 @@
+{
+  "question": "Top 5 countries by revenue in 2011",
+  "kind": "clarify",
+  "latency_ms": 12916.2,
+  "trace": [
+    {
+      "node": "understand",
+      "ms": 12910.5,
+      "source": "llm",
+      "intent": "show",
+      "model_request_status": "succeeded",
+      "model_error": null,
+      "model_configuration": {
+        "mode": "llm",
+        "configured": true,
+        "provider": "ollama",
+        "model": "lumen-qwen",
+        "endpoint": "http://localhost:11434/v1",
+        "timeout_seconds": "60",
+        "configuration_only": true
+      },
+      "slots": {
+        "metrics": [
+          "revenue"
+        ],
+        "filters": {
+          "country": [
+            "Australia",
+            "Austria",
+            "Bahrain",
+            "Belgium",
+            "Bermuda",
+            "Brazil",
+            "Canada",
+            "Channel Islands",
+            "Cyprus",
+            "Czech Republic",
+            "Denmark",
+            "EIRE",
+            "European Community",
+            "Finland",
+            "France",
+            "Germany",
+            "Greece",
+            "Hong Kong",
+            "Iceland",
+            "Israel",
+            "Italy",
+            "Japan",
+            "Korea",
+            "Lebanon",
+            "Lithuania",
+            "Malta",
+            "Netherlands",
+            "Nigeria",
+            "Norway",
+            "Poland",
+            "Portugal",
+            "RSA",
+            "Saudi Arabia",
+            "Singapore",
+            "Spain",
+            "Sweden",
+            "Switzerland",
+            "Thailand",
+            "USA",
+            "United Arab Emirates",
+            "United Kingdom",
+            "Unspecified",
+            "West Indies"
+          ]
+        },
+        "excluded": {},
+        "group_by": [
+          "country"
+        ],
+        "time": "2011",
+        "typos_fixed": [
+          [
+            "llm_hallucinations_blocked",
+            "field:year"
+          ]
+        ],
+        "followup": false
+      }
+    },
+    {
+      "node": "retrieve+plan",
+      "ms": 0.0,
+      "kind": "clarify",
+      "page": null,
+      "candidates": [],
+      "analysis": null
+    },
+    {
+      "node": "respond",
+      "ms": 0.0,
+      "facts": 0,
+      "faithfulness": 1.0
+    }
+  ],
+  "target_state": null,
+  "reply": "Some requested fields or values are not available in this app. Please choose a known metric and filter."
+}

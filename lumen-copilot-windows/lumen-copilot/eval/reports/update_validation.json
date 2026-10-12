@@ -1,0 +1,14 @@
+{
+  "server_http_smoke": "passed",
+  "framework": true,
+  "root_cause": "Electronics",
+  "api_verification": true,
+  "browser_executed": false,
+  "native_windows_executed": false,
+  "automated_tests_passed": 17,
+  "metadata_pages_rendered": 209,
+  "benchmark_requests": 350,
+  "bookmark_confirmation": "passed",
+  "javascript_syntax": "passed",
+  "live_ollama_tested": false
+}

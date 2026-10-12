@@ -1,0 +1,797 @@
+{
+  "generated_at": "2026-10-11T04:28:04.330034+00:00",
+  "dataset": "UCI Online Retail II (imported source)",
+  "method": "Independent workbook/CSV parsing, boolean eligibility mask, Decimal quantity*price aggregation; no import helper or runtime SQL used for expected values.",
+  "source_hashes": [
+    {
+      "file": "online_retail_II.xlsx",
+      "sha256": "bcbe73b35f5b7babf197fb0cb983a11f5d9ff929078d4aa53d171b1f2df2e980"
+    }
+  ],
+  "runtime_source_hashes": [
+    {
+      "file": "online_retail_II.xlsx",
+      "sheet": "Year 2009-2010",
+      "sha256": "bcbe73b35f5b7babf197fb0cb983a11f5d9ff929078d4aa53d171b1f2df2e980",
+      "rows": 525461,
+      "actual_columns": [
+        "Invoice",
+        "StockCode",
+        "Description",
+        "Quantity",
+        "InvoiceDate",
+        "Price",
+        "Customer ID",
+        "Country"
+      ],
+      "aliases": {
+        "invoice": "Invoice",
+        "stock_code": "StockCode",
+        "description": "Description",
+        "quantity": "Quantity",
+        "invoice_date": "InvoiceDate",
+        "unit_price": "Price",
+        "customer_id": "Customer ID",
+        "country": "Country"
+      }
+    },
+    {
+      "file": "online_retail_II.xlsx",
+      "sheet": "Year 2010-2011",
+      "sha256": "bcbe73b35f5b7babf197fb0cb983a11f5d9ff929078d4aa53d171b1f2df2e980",
+      "rows": 541910,
+      "actual_columns": [
+        "Invoice",
+        "StockCode",
+        "Description",
+        "Quantity",
+        "InvoiceDate",
+        "Price",
+        "Customer ID",
+        "Country"
+      ],
+      "aliases": {
+        "invoice": "Invoice",
+        "stock_code": "StockCode",
+        "description": "Description",
+        "quantity": "Quantity",
+        "invoice_date": "InvoiceDate",
+        "unit_price": "Price",
+        "customer_id": "Customer ID",
+        "country": "Country"
+      }
+    }
+  ],
+  "duration_seconds": 168.04,
+  "checks": [
+    {
+      "check": "eligible row count",
+      "actual": 1007913,
+      "independent_expected": 1007913,
+      "ok": true,
+      "tolerance_gbp": 0
+    },
+    {
+      "check": "excluded row count",
+      "actual": 59458,
+      "independent_expected": 59458,
+      "ok": true,
+      "tolerance_gbp": 0
+    },
+    {
+      "check": "all-time revenue",
+      "actual": 20476260.448,
+      "independent_expected": 20476260.448,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2009-12",
+      "actual": 822483.95,
+      "independent_expected": 822483.95,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-01",
+      "actual": 651155.112,
+      "independent_expected": 651155.112,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-02",
+      "actual": 551504.726,
+      "independent_expected": 551504.726,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-03",
+      "actual": 830915.261,
+      "independent_expected": 830915.261,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-04",
+      "actual": 678875.252,
+      "independent_expected": 678875.252,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-05",
+      "actual": 657705.5,
+      "independent_expected": 657705.5,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-06",
+      "actual": 749537.31,
+      "independent_expected": 749537.31,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-07",
+      "actual": 648810.27,
+      "independent_expected": 648810.27,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-08",
+      "actual": 695251.91,
+      "independent_expected": 695251.91,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-09",
+      "actual": 921696.991,
+      "independent_expected": 921696.991,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-10",
+      "actual": 1161902.22,
+      "independent_expected": 1161902.22,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-11",
+      "actual": 1464293.142,
+      "independent_expected": 1464293.142,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2010-12",
+      "actual": 821452.73,
+      "independent_expected": 821452.73,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-01",
+      "actual": 689811.61,
+      "independent_expected": 689811.61,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-02",
+      "actual": 522545.56,
+      "independent_expected": 522545.56,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-03",
+      "actual": 716215.26,
+      "independent_expected": 716215.26,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-04",
+      "actual": 536968.491,
+      "independent_expected": 536968.491,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-05",
+      "actual": 769296.61,
+      "independent_expected": 769296.61,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-06",
+      "actual": 760547.01,
+      "independent_expected": 760547.01,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-07",
+      "actual": 718076.121,
+      "independent_expected": 718076.121,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-08",
+      "actual": 757841.38,
+      "independent_expected": 757841.38,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-09",
+      "actual": 1056435.192,
+      "independent_expected": 1056435.192,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-10",
+      "actual": 1151263.73,
+      "independent_expected": 1151263.73,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-11",
+      "actual": 1503866.78,
+      "independent_expected": 1503866.78,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "monthly 2011-12",
+      "actual": 637808.33,
+      "independent_expected": 637808.33,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country ranking 2009",
+      "actual": [
+        "United Kingdom",
+        "EIRE",
+        "Netherlands",
+        "Germany",
+        "Spain"
+      ],
+      "independent_expected": [
+        "United Kingdom",
+        "EIRE",
+        "Netherlands",
+        "Germany",
+        "Spain"
+      ],
+      "ok": true
+    },
+    {
+      "check": "country 2009 United Kingdom",
+      "actual": 747397.29,
+      "independent_expected": 747397.29,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2009 EIRE",
+      "actual": 20099.74,
+      "independent_expected": 20099.74,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2009 Netherlands",
+      "actual": 15204.73,
+      "independent_expected": 15204.73,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2009 Germany",
+      "actual": 9830.27,
+      "independent_expected": 9830.27,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2009 Spain",
+      "actual": 7950.18,
+      "independent_expected": 7950.18,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country ranking 2010",
+      "actual": [
+        "United Kingdom",
+        "EIRE",
+        "Netherlands",
+        "Germany",
+        "France"
+      ],
+      "independent_expected": [
+        "United Kingdom",
+        "EIRE",
+        "Netherlands",
+        "Germany",
+        "France"
+      ],
+      "ok": true
+    },
+    {
+      "check": "country 2010 United Kingdom",
+      "actual": 8407136.953,
+      "independent_expected": 8407136.953,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2010 EIRE",
+      "actual": 365560.31,
+      "independent_expected": 365560.31,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2010 Netherlands",
+      "actual": 262171.5,
+      "independent_expected": 262171.5,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2010 Germany",
+      "actual": 201716.781,
+      "independent_expected": 201716.781,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2010 France",
+      "actual": 143907.34,
+      "independent_expected": 143907.34,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country ranking 2011",
+      "actual": [
+        "United Kingdom",
+        "Netherlands",
+        "EIRE",
+        "Germany",
+        "France"
+      ],
+      "independent_expected": [
+        "United Kingdom",
+        "Netherlands",
+        "EIRE",
+        "Germany",
+        "France"
+      ],
+      "ok": true
+    },
+    {
+      "check": "country 2011 United Kingdom",
+      "actual": 8255661.874,
+      "independent_expected": 8255661.874,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2011 Netherlands",
+      "actual": 276661.86,
+      "independent_expected": 276661.86,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2011 EIRE",
+      "actual": 273107.26,
+      "independent_expected": 273107.26,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2011 Germany",
+      "actual": 213472.66,
+      "independent_expected": 213472.66,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country 2011 France",
+      "actual": 200027.06,
+      "independent_expected": 200027.06,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product ranking 2009",
+      "actual": [
+        "DOT",
+        "85123A",
+        "22086",
+        "15056BL",
+        "22111"
+      ],
+      "independent_expected": [
+        "DOT",
+        "85123A",
+        "22086",
+        "15056BL",
+        "22111"
+      ],
+      "ok": true
+    },
+    {
+      "check": "retail_product 2009 DOT",
+      "actual": 18574.58,
+      "independent_expected": 18574.58,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2009 85123A",
+      "actual": 17255.35,
+      "independent_expected": 17255.35,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2009 22086",
+      "actual": 10169.36,
+      "independent_expected": 10169.36,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2009 15056BL",
+      "actual": 8671.75,
+      "independent_expected": 8671.75,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2009 22111",
+      "actual": 8027.76,
+      "independent_expected": 8027.76,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product ranking 2010",
+      "actual": [
+        "M",
+        "22423",
+        "85123A",
+        "DOT",
+        "85099B"
+      ],
+      "independent_expected": [
+        "M",
+        "22423",
+        "85123A",
+        "DOT",
+        "85099B"
+      ],
+      "ok": true
+    },
+    {
+      "check": "retail_product 2010 M",
+      "actual": 261716.29,
+      "independent_expected": 261716.29,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2010 22423",
+      "actual": 184128.54,
+      "independent_expected": 184128.54,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2010 85123A",
+      "actual": 146441.97,
+      "independent_expected": 146441.97,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2010 DOT",
+      "actual": 109701.95,
+      "independent_expected": 109701.95,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2010 85099B",
+      "actual": 83727.18,
+      "independent_expected": 83727.18,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product ranking 2011",
+      "actual": [
+        "DOT",
+        "23843",
+        "22423",
+        "47566",
+        "85123A"
+      ],
+      "independent_expected": [
+        "DOT",
+        "23843",
+        "22423",
+        "47566",
+        "85123A"
+      ],
+      "ok": true
+    },
+    {
+      "check": "retail_product 2011 DOT",
+      "actual": 181577.58,
+      "independent_expected": 181577.58,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2011 23843",
+      "actual": 168469.6,
+      "independent_expected": 168469.6,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2011 22423",
+      "actual": 146461.78,
+      "independent_expected": 146461.78,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2011 47566",
+      "actual": 98237.49,
+      "independent_expected": 98237.49,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "retail_product 2011 85123A",
+      "actual": 94027.39,
+      "independent_expected": 94027.39,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "period comparison delta",
+      "actual": 352603.05000000005,
+      "independent_expected": 352603.05000000005,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Netherlands",
+      "actual": -14834.640000000003,
+      "independent_expected": -14834.640000000003,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution RSA",
+      "actual": -1002.31,
+      "independent_expected": -1002.31,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Italy",
+      "actual": 1081.3899999999999,
+      "independent_expected": 1081.3899999999999,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Czech Republic",
+      "actual": -277.48,
+      "independent_expected": -277.48,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Austria",
+      "actual": 286.0,
+      "independent_expected": 286.0,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Japan",
+      "actual": 6512.04,
+      "independent_expected": 6512.04,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Switzerland",
+      "actual": 68.23000000000047,
+      "independent_expected": 68.23000000000047,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Spain",
+      "actual": 32.11999999999898,
+      "independent_expected": 32.11999999999898,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Iceland",
+      "actual": -1294.32,
+      "independent_expected": -1294.32,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Channel Islands",
+      "actual": -1108.5500000000002,
+      "independent_expected": -1108.5500000000002,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution USA",
+      "actual": -2311.2,
+      "independent_expected": -2311.2,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Belgium",
+      "actual": 630.3800000000001,
+      "independent_expected": 630.3800000000001,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Denmark",
+      "actual": 1208.8100000000002,
+      "independent_expected": 1208.8100000000002,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Finland",
+      "actual": 248.1199999999999,
+      "independent_expected": 248.1199999999999,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Norway",
+      "actual": 2840.27,
+      "independent_expected": 2840.27,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Australia",
+      "actual": -9907.809999999998,
+      "independent_expected": -9907.809999999998,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution France",
+      "actual": -1774.680000000004,
+      "independent_expected": -1774.680000000004,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Poland",
+      "actual": 1361.23,
+      "independent_expected": 1361.23,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Singapore",
+      "actual": -7067.32,
+      "independent_expected": -7067.32,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution United Kingdom",
+      "actual": 384529.93000000005,
+      "independent_expected": 384529.93000000005,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Unspecified",
+      "actual": 965.75,
+      "independent_expected": 965.75,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Cyprus",
+      "actual": -3910.66,
+      "independent_expected": -3910.66,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Israel",
+      "actual": -132.18,
+      "independent_expected": -132.18,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Portugal",
+      "actual": -3580.92,
+      "independent_expected": -3580.92,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Hong Kong",
+      "actual": -408.41999999999996,
+      "independent_expected": -408.41999999999996,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Sweden",
+      "actual": -3043.93,
+      "independent_expected": -3043.93,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution EIRE",
+      "actual": 6410.510000000002,
+      "independent_expected": 6410.510000000002,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Malta",
+      "actual": 743.43,
+      "independent_expected": 743.43,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    },
+    {
+      "check": "country contribution Germany",
+      "actual": -3660.739999999998,
+      "independent_expected": -3660.739999999998,
+      "ok": true,
+      "tolerance_gbp": 0.005
+    }
+  ],
+  "passed": 94,
+  "total_checks": 94,
+  "sql_example": "SELECT SUM(revenue) AS \"revenue\" FROM uci_sales WHERE date BETWEEN '2009-12-01' AND '2011-12-09'",
+  "total_gbp": 20476260.448,
+  "eligible_rows": 1007913
+}

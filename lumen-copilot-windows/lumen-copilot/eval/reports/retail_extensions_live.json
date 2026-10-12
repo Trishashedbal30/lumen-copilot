@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-10-11T05:32:40.523930+00:00",
+  "source_hash": "f1972845afd70c38b7978ca93b120bf0ada31b70a4c21997bb9a60d8f583cf2d",
+  "scope": "Three actual configured-model requests and backend state verification; no browser/model latency benchmark claim",
+  "cases": [
+    {
+      "question": "How many orders in 2011?",
+      "kind": "act",
+      "source": "llm",
+      "model_request_status": "succeeded",
+      "model_error": null,
+      "backend_verified": true,
+      "browser_verified": false,
+      "latency_ms": 1691.7,
+      "destination": "uci.sales.overview",
+      "reply": "**Order count** in 01 Jan 2011 \u2013 09 Dec 2011: **18,401**, \u25bc -4.7% vs prev. 343 days (19,303).\n_Note: Data is only available from 01 Dec 2009 to 09 Dec 2011, so I limited the range to 01 Jan 2011 \u2013 09 Dec 2011._\n_Note: Incomplete month: December 2011 has data only through 09 December; this is not a full-month total._\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._"
+    },
+    {
+      "question": "Who are the top 10 customers by revenue in 2011?",
+      "kind": "act",
+      "source": "llm",
+      "model_request_status": "succeeded",
+      "model_error": null,
+      "backend_verified": true,
+      "browser_verified": false,
+      "latency_ms": 1708.7,
+      "destination": "uci.sales.customers",
+      "reply": "Top 10 customer ids by revenue (gbp) (01 Jan 2011 \u2013 09 Dec 2011):\n1. **14646**: GBP 271,614.14 (2.8%)\n2. **18102**: GBP 231,822.69 (2.4%)\n3. **17450**: GBP 192,361.95 (2.0%)\n4. **16446**: GBP 168,472.50 (1.7%)\n5. **14911**: GBP 135,973.23 (1.4%)\n6. **12415**: GBP 124,914.53 (1.3%)\n7. **14156**: GBP 116,887.88 (1.2%)\n8. **17511**: GBP 84,351.30 (0.9%)\n9. **12346**: GBP 77,183.60 (0.8%)\n10. **16029**: GBP 67,738.32 (0.7%)\n_Note: Data is only available from 01 Dec 2009 to 09 Dec 2011, so I limited the range to 01 Jan 2011 \u2013 09 Dec 2011._\n_Note: Incomplete month: December 2011 has data only through 09 December; this is not a full-month total._\n_Note: Customer rankings exclude missing Customer IDs. Customers are identified by ID, not name; shares use all eligible sales in the selected scope._\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._"
+    },
+    {
+      "question": "Compare revenue in October 2011 and November 2011 by product",
+      "kind": "act",
+      "source": "llm",
+      "model_request_status": "succeeded",
+      "model_error": null,
+      "backend_verified": true,
+      "browser_verified": false,
+      "latency_ms": 1739.4,
+      "destination": "uci.sales.overview",
+      "reply": "**Revenue (GBP)**: **GBP 1,503,866.78** in Nov 2011 vs **GBP 1,151,263.73** in Oct 2011 (\u25b2 +30.6%, +GBP 352,603.05).\nNumerical contributors by Product (StockCode) to the change: 23084: GBP 22,221.53; DOT: GBP 18,950.27; 22086: GBP 18,933.00; M: GBP -17,876.25; 85123A: GBP 9,380.65. All remaining members combined: GBP 300,993.85. These contributions reconcile to the total revenue change.\n_Note: These periods contain different numbers of days; use the equivalent-day comparison for a fairer view._\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._"
+    }
+  ]
+}

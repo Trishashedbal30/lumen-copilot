@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest>=8
+playwright>=1.44
+# optional dense retrieval (needs internet once to download the model):
+# sentence-transformers>=2.7

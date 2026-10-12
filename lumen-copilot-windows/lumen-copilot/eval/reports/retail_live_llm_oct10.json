@@ -1,0 +1,192 @@
+[
+  {
+    "question": "Top 5 countries by revenue in 2011",
+    "kind": "act",
+    "latency_ms": 4401.9,
+    "trace": [
+      {
+        "node": "understand",
+        "ms": 4345.9,
+        "source": "llm",
+        "intent": "query",
+        "model_request_status": "succeeded",
+        "model_error": null,
+        "model_configuration": {
+          "mode": "llm",
+          "configured": true,
+          "provider": "ollama",
+          "model": "lumen-qwen",
+          "endpoint": "http://localhost:11434/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [
+            "country"
+          ],
+          "time": "2011",
+          "typos_fixed": [],
+          "followup": false
+        }
+      },
+      {
+        "node": "retrieve+plan",
+        "ms": 5.5,
+        "kind": "act",
+        "page": "uci.sales.overview",
+        "candidates": [
+          [
+            "uci.sales.overview",
+            6.2
+          ],
+          [
+            "sales.products.top",
+            -1.36
+          ],
+          [
+            "sales.city.leaderboard",
+            -1.82
+          ]
+        ],
+        "analysis": "rank"
+      },
+      {
+        "node": "validate",
+        "ms": 1.0,
+        "violations": [],
+        "repaired": false,
+        "remaining": []
+      },
+      {
+        "node": "execute",
+        "ms": 38.8,
+        "analysis": "rank",
+        "facts": 10,
+        "queries": 1
+      },
+      {
+        "node": "respond",
+        "ms": 0.0,
+        "facts": 10,
+        "faithfulness": 1.0
+      }
+    ],
+    "target_state": {
+      "page_id": "uci.sales.overview",
+      "filters": {},
+      "date_range": {
+        "start": "2011-01-01",
+        "end": "2011-12-09",
+        "label": "01 Jan 2011 \u2013 09 Dec 2011"
+      },
+      "compare": "previous_period",
+      "compare_range": null,
+      "sort": {
+        "field": "revenue",
+        "dir": "desc"
+      },
+      "top_n": 5,
+      "grain": "auto"
+    },
+    "reply": "Top 5 countries by revenue (gbp) (01 Jan 2011 \u2013 09 Dec 2011):\n1. **United Kingdom**: GBP 8,255,661.87 (84.1%)\n2. **Netherlands**: GBP 276,661.86 (2.8%)\n3. **EIRE**: GBP 273,107.26 (2.8%)\n4. **Germany**: GBP 213,472.66 (2.2%)\n5. **France**: GBP 200,027.06 (2.0%)\n_Note: Data is only available from 01 Dec 2009 to 09 Dec 2011, so I limited the range to 01 Jan 2011 \u2013 09 Dec 2011._\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._"
+  },
+  {
+    "question": "Show monthly revenue for 2011",
+    "kind": "act",
+    "latency_ms": 3875.4,
+    "trace": [
+      {
+        "node": "understand",
+        "ms": 3853.2,
+        "source": "llm",
+        "intent": "trend",
+        "model_request_status": "succeeded",
+        "model_error": null,
+        "model_configuration": {
+          "mode": "llm",
+          "configured": true,
+          "provider": "ollama",
+          "model": "lumen-qwen",
+          "endpoint": "http://localhost:11434/v1",
+          "timeout_seconds": "60",
+          "configuration_only": true
+        },
+        "slots": {
+          "metrics": [
+            "revenue"
+          ],
+          "filters": {},
+          "excluded": {},
+          "group_by": [],
+          "time": "2011",
+          "typos_fixed": [],
+          "followup": false
+        }
+      },
+      {
+        "node": "retrieve+plan",
+        "ms": 4.0,
+        "kind": "act",
+        "page": "uci.sales.overview",
+        "candidates": [
+          [
+            "uci.sales.overview",
+            7.1
+          ],
+          [
+            "finance.reports.monthly",
+            -1.5
+          ],
+          [
+            "sales.overview.revenue_trend",
+            -2.04
+          ]
+        ],
+        "analysis": "trend"
+      },
+      {
+        "node": "validate",
+        "ms": 1.1,
+        "violations": [],
+        "repaired": false,
+        "remaining": []
+      },
+      {
+        "node": "execute",
+        "ms": 11.8,
+        "analysis": "trend",
+        "facts": 21,
+        "queries": 1
+      },
+      {
+        "node": "respond",
+        "ms": 0.0,
+        "facts": 21,
+        "faithfulness": 1.0
+      }
+    ],
+    "target_state": {
+      "page_id": "uci.sales.overview",
+      "filters": {},
+      "date_range": {
+        "start": "2011-01-01",
+        "end": "2011-12-09",
+        "label": "01 Jan 2011 \u2013 09 Dec 2011"
+      },
+      "compare": "previous_period",
+      "compare_range": null,
+      "sort": {
+        "field": "revenue",
+        "dir": "desc"
+      },
+      "top_n": 25,
+      "grain": "month"
+    },
+    "reply": "**Revenue (GBP)** fell (-7.5%) from GBP 689,811.61 (Jan 2011) to **GBP 637,808.33** (Dec 2011 (partial)), by month. Peak: GBP 1,503,866.78 (Nov 2011); low: GBP 522,545.56 (Feb 2011). Unusual points: spike in Oct 2011 (GBP 1,151,263.73); spike in Nov 2011 (GBP 1,503,866.78).\n_Note: Data is only available from 01 Dec 2009 to 09 Dec 2011, so I limited the range to 01 Jan 2011 \u2013 09 Dec 2011._\n_Note: Edge months are partial. Compare complete months before interpreting a full-month revenue change._\n_Dataset: UCI Online Retail II / imported historical sales / GBP. External causes are not established by transaction data._"
+  }
+]

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lumen · Sahyadri Retail</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2312302b'/><path d='M9 24 L16 8 L23 24' stroke='%23e3a018' stroke-width='3' fill='none'/></svg>">
+</head>
+<body>
+<div class="shell">
+  <aside class="nav" id="nav" aria-label="App navigation">
+    <div class="brand"><span class="brand-symbol" aria-hidden="true">L</span><div><span class="brand-mark">Lumen</span><span class="brand-tenant" id="tenant">Sahyadri Retail</span></div><button class="plain-btn nav-close" id="navClose" aria-label="Close navigation">&times;</button></div>
+    <div class="dataset-switch"><label for="datasetMode">WORKSPACE</label><select id="datasetMode" aria-label="Dataset"><option value="synthetic">Sahyadri Retail &middot; synthetic</option><option value="retail">UCI Retail II &middot; real data</option><option value="olist">Olist Brazil &middot; real data</option></select></div>
+    <div class="nav-search"><input id="navSearch" type="search" placeholder="Search pages..." aria-label="Find a page"></div>
+    <div class="nav-label">REPORTS &amp; DASHBOARDS</div>
+    <nav class="tree" id="tree"></nav>
+    <details class="saved-box"><summary>Saved views</summary><div id="savedViews"></div></details>
+    <details class="dataset-details"><summary>About this data</summary><p id="datasetInfo"></p><a href="/api/datasets" target="_blank" rel="noopener">View import report</a><a href="https://archive.ics.uci.edu/dataset/502/online+retail+ii" target="_blank" rel="noopener" id="officialSource">Official UCI source</a></details>
+    <div class="nav-foot"><span id="asof"></span><span id="datasetFoot">Synthetic demonstration data</span></div>
+  </aside>
+
+  <main class="canvas" id="canvas">
+
+    <div class="loading-bar" id="loading"></div>
+    <header class="page-head">
+      <div class="workspace-bar"><div class="workspace-label"><span class="status-dot"></span><span id="datasetBadge">Synthetic data</span></div><div class="workspace-actions"><button class="btn" id="menuBtn" aria-expanded="false">Pages</button><button class="btn" id="cpBtn" aria-expanded="true">Copilot</button></div></div>
+      <div class="crumbs" id="crumbs"></div>
+      <div class="page-title-row">
+        <h1 class="page-title" id="pageTitle">Loading…</h1>
+        <div class="head-actions">
+          <button class="btn" id="copyLink" title="Copy a deep link to this exact view">Copy link</button>
+          <button class="btn" id="resetBtn">Reset view</button>
+        </div>
+      </div>
+      <p class="page-desc" id="pageDesc"></p>
+    </header>
+    <div class="filter-heading">View controls <span>Choose your scope</span></div>
+    <section class="controls" id="controls" aria-label="Page filters"></section>
+    <section class="board" id="board"></section>
+  </main>
+
+  <aside class="copilot" id="copilot" aria-label="Copilot">
+    <div class="cp-head"><div class="cp-heading"><span class="cp-symbol" aria-hidden="true">&#10022;</span><div><div class="cp-title">Lumen Copilot</div><div class="cp-sub">Ask. Explore. Understand.</div></div></div><button class="plain-btn" id="cpClose" aria-label="Close copilot">&times;</button></div>
+    <div class="cp-toolbar"><span class="mode-pill" id="modePill">Connecting...</span><button class="plain-btn" id="newChat">New chat</button></div>
+    <div class="cp-log" id="log" aria-live="polite"></div>
+    <div class="composer-context" id="composerContext">Using the current view</div>
+    <form class="composer" id="composer">
+      <textarea id="input" rows="1" placeholder="Ask about your data…" aria-label="Message the copilot"></textarea>
+      <button type="button" class="icon-btn" id="mic" title="Speak (en-IN)" aria-label="Speak">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      </button>
+      <button type="submit" class="icon-btn send" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </aside>
+</div>
+<button class="panel-backdrop" id="panelBackdrop" aria-label="Close open panel" hidden></button>
+<script src="/static/vendor/chart.umd.js"></script>
+<script src="/static/app.js"></script>
+<script src="/static/copilot.js"></script>
+</body>
+</html>

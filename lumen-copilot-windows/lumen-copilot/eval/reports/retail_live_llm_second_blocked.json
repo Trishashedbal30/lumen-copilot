@@ -1,0 +1,66 @@
+{
+  "question": "Top 5 countries by revenue in 2011",
+  "kind": "clarify",
+  "latency_ms": 4479.3,
+  "trace": [
+    {
+      "node": "understand",
+      "ms": 4472.2,
+      "source": "llm",
+      "intent": "query",
+      "model_request_status": "response_received_blocked_slots",
+      "model_error": null,
+      "model_configuration": {
+        "mode": "llm",
+        "configured": true,
+        "provider": "ollama",
+        "model": "lumen-qwen",
+        "endpoint": "http://localhost:11434/v1",
+        "timeout_seconds": "60",
+        "configuration_only": true
+      },
+      "slots": {
+        "metrics": [
+          "revenue"
+        ],
+        "filters": {
+          "country": [
+            "Australia",
+            "Austria",
+            "Bahrain",
+            "Belgium",
+            "Bermuda"
+          ]
+        },
+        "excluded": {},
+        "group_by": [
+          "country"
+        ],
+        "time": "2011",
+        "typos_fixed": [
+          [
+            "llm_hallucinations_blocked",
+            "metric:view.metric"
+          ]
+        ],
+        "followup": false
+      }
+    },
+    {
+      "node": "retrieve+plan",
+      "ms": 0.0,
+      "kind": "clarify",
+      "page": null,
+      "candidates": [],
+      "analysis": null
+    },
+    {
+      "node": "respond",
+      "ms": 0.0,
+      "facts": 0,
+      "faithfulness": 1.0
+    }
+  ],
+  "target_state": null,
+  "reply": "Some requested fields or values are not available in this app. Please choose a known metric and filter."
+}

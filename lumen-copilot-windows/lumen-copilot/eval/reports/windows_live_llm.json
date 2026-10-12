@@ -1,0 +1,101 @@
+{
+  "question": "Show South revenue for August 2026",
+  "trace": [
+    {
+      "node": "understand",
+      "ms": 3587.2,
+      "source": "llm",
+      "intent": "show",
+      "model_request_status": "succeeded",
+      "model_error": null,
+      "model_configuration": {
+        "mode": "llm",
+        "configured": true,
+        "provider": "ollama",
+        "model": "lumen-qwen",
+        "endpoint": "http://localhost:11434/v1",
+        "timeout_seconds": "60",
+        "inference_verified": false
+      },
+      "slots": {
+        "metrics": [
+          "revenue"
+        ],
+        "filters": {
+          "region": [
+            "South"
+          ]
+        },
+        "excluded": {},
+        "group_by": [],
+        "time": "Aug 2026",
+        "typos_fixed": [],
+        "followup": false
+      }
+    },
+    {
+      "node": "retrieve+plan",
+      "ms": 4.4,
+      "kind": "act",
+      "page": "sales.regional.south",
+      "candidates": [
+        [
+          "sales.regional.south",
+          7.42
+        ],
+        [
+          "sales.region_category.south_sports",
+          5.25
+        ],
+        [
+          "sales.region_category.south_beauty",
+          5.2
+        ]
+      ],
+      "analysis": "kpi"
+    },
+    {
+      "node": "validate",
+      "ms": 0.6,
+      "violations": [],
+      "repaired": false,
+      "remaining": []
+    },
+    {
+      "node": "execute",
+      "ms": 27.2,
+      "analysis": "kpi",
+      "facts": 5,
+      "queries": 3
+    },
+    {
+      "node": "respond",
+      "ms": 0.0,
+      "facts": 5,
+      "faithfulness": 1.0
+    }
+  ],
+  "latency_ms": 3626.8,
+  "target_state": {
+    "page_id": "sales.regional.south",
+    "filters": {
+      "region": [
+        "South"
+      ]
+    },
+    "date_range": {
+      "start": "2026-08-01",
+      "end": "2026-08-31",
+      "label": "Aug 2026"
+    },
+    "compare": "previous_period",
+    "compare_range": null,
+    "sort": {
+      "field": "revenue",
+      "dir": "desc"
+    },
+    "top_n": 25,
+    "grain": "auto"
+  },
+  "kind": "act"
+}

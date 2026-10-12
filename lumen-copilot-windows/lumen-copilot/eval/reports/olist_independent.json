@@ -1,0 +1,301 @@
+{
+  "generated_at": "2026-10-11T06:17:18.564424+00:00",
+  "source_hash": "606bffcb2644c077151d59c382987c21e3cccd4149db7b09e58e0c2ec0313b52",
+  "method": "Original official ZIP, csv.DictReader, Decimal price aggregation and independent order iteration. No importer or SQL for expected values.",
+  "checks": [
+    {
+      "check": "source order count",
+      "actual": 99441,
+      "independent_expected": 99441,
+      "ok": true,
+      "tolerance": 0
+    },
+    {
+      "check": "olist_sales eligible orders",
+      "actual": 96478,
+      "independent_expected": 96478,
+      "ok": true,
+      "tolerance": 0
+    },
+    {
+      "check": "olist_sales coverage start",
+      "actual": "2016-09-15",
+      "independent_expected": "2016-09-15",
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "olist_sales coverage end",
+      "actual": "2018-08-29",
+      "independent_expected": "2018-08-29",
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2017 olist_revenue",
+      "actual": 5962902.01,
+      "independent_expected": 5962902.01,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2017 olist_orders",
+      "actual": 43428,
+      "independent_expected": 43428,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2017 olist_aov",
+      "actual": 137.3055,
+      "independent_expected": 137.30547135488624,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2018 olist_revenue",
+      "actual": 7218125.12,
+      "independent_expected": 7218125.12,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "2018 olist_orders",
+      "actual": 52783,
+      "independent_expected": 52783,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2018 olist_aov",
+      "actual": 136.7509,
+      "independent_expected": 136.75094481177652,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "olist_delivery eligible orders",
+      "actual": 96470,
+      "independent_expected": 96470,
+      "ok": true,
+      "tolerance": 0
+    },
+    {
+      "check": "olist_delivery coverage start",
+      "actual": "2016-09-15",
+      "independent_expected": "2016-09-15",
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "olist_delivery coverage end",
+      "actual": "2018-08-29",
+      "independent_expected": "2018-08-29",
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2017 olist_orders",
+      "actual": 43426,
+      "independent_expected": 43426,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2017 olist_late_rate",
+      "actual": 5.6487,
+      "independent_expected": 5.648689725049509,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2017 olist_delivery_days",
+      "actual": 13.0255,
+      "independent_expected": 13.025526681137858,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2018 olist_orders",
+      "actual": 52777,
+      "independent_expected": 52777,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2018 olist_late_rate",
+      "actual": 7.7269,
+      "independent_expected": 7.726850711484169,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2018 olist_delivery_days",
+      "actual": 12.1377,
+      "independent_expected": 12.137693076529548,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "olist_reviews eligible orders",
+      "actual": 95824,
+      "independent_expected": 95824,
+      "ok": true,
+      "tolerance": 0
+    },
+    {
+      "check": "olist_reviews coverage start",
+      "actual": "2016-09-15",
+      "independent_expected": "2016-09-15",
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "olist_reviews coverage end",
+      "actual": "2018-08-29",
+      "independent_expected": "2018-08-29",
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2017 olist_reviewed_orders",
+      "actual": 43098,
+      "independent_expected": 43098,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2017 olist_review_score",
+      "actual": 4.1743,
+      "independent_expected": 4.174308165885502,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2017 olist_low_review_rate",
+      "actual": 12.0539,
+      "independent_expected": 12.053923615945056,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2018 olist_reviewed_orders",
+      "actual": 52462,
+      "independent_expected": 52462,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2018 olist_review_score",
+      "actual": 4.142,
+      "independent_expected": 4.142013902125983,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "2018 olist_low_review_rate",
+      "actual": 13.3373,
+      "independent_expected": 13.337272692615608,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "late-delivery state ranking",
+      "actual": [
+        "AL",
+        "RR",
+        "MA",
+        "SE",
+        "PB"
+      ],
+      "independent_expected": [
+        "AL",
+        "RR",
+        "MA",
+        "SE",
+        "PB"
+      ],
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "late rate AL",
+      "actual": 20.7071,
+      "independent_expected": 20.707070707070706,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "late rate RR",
+      "actual": 16.6667,
+      "independent_expected": 16.666666666666668,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "late rate MA",
+      "actual": 15.2589,
+      "independent_expected": 15.258855585831062,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "late rate SE",
+      "actual": 14.5161,
+      "independent_expected": 14.516129032258064,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "late rate PB",
+      "actual": 12.1457,
+      "independent_expected": 12.145748987854251,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "Late review association",
+      "actual": 2.3182,
+      "independent_expected": 2.3181627516778525,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "On time review association",
+      "actual": 4.283,
+      "independent_expected": 4.282994383586318,
+      "ok": true,
+      "tolerance": 0.0002
+    },
+    {
+      "check": "November-October sales delta",
+      "actual": 339517.72,
+      "independent_expected": 339517.72,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "one fact per order",
+      "actual": 99441,
+      "independent_expected": 99441,
+      "ok": true,
+      "tolerance": 0
+    },
+    {
+      "check": "payment aggregate not multiplied",
+      "actual": 16008872.119999077,
+      "independent_expected": 16008872.12,
+      "ok": true,
+      "tolerance": 0.005
+    },
+    {
+      "check": "review rows not multiplied",
+      "actual": 99224.0,
+      "independent_expected": 99224,
+      "ok": true,
+      "tolerance": 0
+    }
+  ],
+  "passed": 40,
+  "total": 40
+}

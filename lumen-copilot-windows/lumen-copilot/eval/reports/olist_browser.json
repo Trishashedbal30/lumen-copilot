@@ -1,0 +1,230 @@
+{
+  "generated_at": "2026-10-11T06:17:12.120135+00:00",
+  "source_hash": "606bffcb2644c077151d59c382987c21e3cccd4149db7b09e58e0c2ec0313b52",
+  "scope": "Actual Chromium desktop and mobile; rules-mode server, real Olist import",
+  "cases": [
+    {
+      "viewport": 1440,
+      "question": "Show monthly sales value for 2017",
+      "destination": "olist.sales.overview",
+      "controls": {
+        "page_id": "olist.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "label": "2017"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "olist_revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "month"
+      },
+      "verification": "Checked: your view matches the request.",
+      "latency_ms": 1876
+    },
+    {
+      "viewport": 1440,
+      "question": "Top 5 states by late delivery rate in 2017",
+      "destination": "olist.delivery.overview",
+      "controls": {
+        "page_id": "olist.delivery.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "label": "2017"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "olist_late_rate",
+          "dir": "desc"
+        },
+        "top_n": 5,
+        "grain": "auto"
+      },
+      "verification": "Checked: your view matches the request.",
+      "latency_ms": 2091
+    },
+    {
+      "viewport": 1440,
+      "question": "Compare review scores for late and on-time deliveries in 2017",
+      "destination": "olist.reviews.overview",
+      "controls": {
+        "page_id": "olist.reviews.overview",
+        "filters": {
+          "olist_delivery_status": [
+            "Late",
+            "On time"
+          ]
+        },
+        "date_range": {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "label": "2017"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "olist_review_score",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verification": "Checked: your view matches the request.",
+      "latency_ms": 2120
+    },
+    {
+      "viewport": 1440,
+      "question": "What about SP?",
+      "destination": "olist.reviews.overview",
+      "controls": {
+        "page_id": "olist.reviews.overview",
+        "filters": {
+          "olist_delivery_status": [
+            "Late",
+            "On time"
+          ],
+          "br_state": [
+            "SP"
+          ]
+        },
+        "date_range": {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "label": "2017"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "olist_review_score",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verification": "Checked: your view matches the request.",
+      "latency_ms": 1584
+    },
+    {
+      "viewport": 390,
+      "question": "Show monthly sales value for 2017",
+      "destination": "olist.sales.overview",
+      "controls": {
+        "page_id": "olist.sales.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "label": "2017"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "olist_revenue",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "month"
+      },
+      "verification": "Checked: your view matches the request.",
+      "latency_ms": 1847
+    },
+    {
+      "viewport": 390,
+      "question": "Top 5 states by late delivery rate in 2017",
+      "destination": "olist.delivery.overview",
+      "controls": {
+        "page_id": "olist.delivery.overview",
+        "filters": {},
+        "date_range": {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "label": "2017"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "olist_late_rate",
+          "dir": "desc"
+        },
+        "top_n": 5,
+        "grain": "auto"
+      },
+      "verification": "Checked: your view matches the request.",
+      "latency_ms": 2120
+    },
+    {
+      "viewport": 390,
+      "question": "Compare review scores for late and on-time deliveries in 2017",
+      "destination": "olist.reviews.overview",
+      "controls": {
+        "page_id": "olist.reviews.overview",
+        "filters": {
+          "olist_delivery_status": [
+            "Late",
+            "On time"
+          ]
+        },
+        "date_range": {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "label": "2017"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "olist_review_score",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verification": "Checked: your view matches the request.",
+      "latency_ms": 2076
+    },
+    {
+      "viewport": 390,
+      "question": "What about SP?",
+      "destination": "olist.reviews.overview",
+      "controls": {
+        "page_id": "olist.reviews.overview",
+        "filters": {
+          "olist_delivery_status": [
+            "Late",
+            "On time"
+          ],
+          "br_state": [
+            "SP"
+          ]
+        },
+        "date_range": {
+          "start": "2017-01-01",
+          "end": "2017-12-31",
+          "label": "2017"
+        },
+        "compare": "none",
+        "compare_range": null,
+        "sort": {
+          "field": "olist_review_score",
+          "dir": "desc"
+        },
+        "top_n": 25,
+        "grain": "auto"
+      },
+      "verification": "Checked: your view matches the request.",
+      "latency_ms": 1570
+    }
+  ],
+  "passed": 8,
+  "dataset_switching": true,
+  "evidence_links": true,
+  "saved_view_reopen": true,
+  "javascript_errors": []
+}

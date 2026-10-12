@@ -1,0 +1,783 @@
+{
+ "generated_at": "2026-10-09 10:21:53",
+ "pages": 209,
+ "engine": {
+  "langgraph": true
+ },
+ "splits": {
+  "blind": {
+   "kind_ok": [
+    0.9592,
+    49
+   ],
+   "intent_ok": [
+    0.9592,
+    49
+   ],
+   "dest_ok": [
+    0.9091,
+    44
+   ],
+   "dest_strict": [
+    0.7955,
+    44
+   ],
+   "state_ok": [
+    0.9318,
+    44
+   ],
+   "filters_ok": [
+    1.0,
+    44
+   ],
+   "date_ok": [
+    0.9545,
+    22
+   ],
+   "compare_ok": [
+    0.5,
+    2
+   ],
+   "sort_ok": [
+    null,
+    0
+   ],
+   "topn_ok": [
+    0.0,
+    1
+   ],
+   "n": 49
+  }
+ },
+ "failures": [
+  {
+   "split": "blind",
+   "id": "b018",
+   "utterance": "zone-wise revenue for last month",
+   "failed": [
+    "dest_ok"
+   ],
+   "expected": {
+    "intent": [
+     "lookup"
+    ],
+    "pages": [
+     "sales.regional.comparison",
+     "sales.overview.overview",
+     "exec.dashboards.regional_overview"
+    ],
+    "filters": {},
+    "date_range": {
+     "start": "2026-08-01",
+     "end": "2026-08-31"
+    },
+    "compare": null,
+    "sort": null,
+    "top_n": null,
+    "kind": "act"
+   },
+   "got": {
+    "kind": "act",
+    "intent": "show",
+    "page": "finance.reports.monthly",
+    "filters": {},
+    "date_range": {
+     "start": "2026-08-01",
+     "end": "2026-08-31",
+     "label": "Aug 2026",
+     "preset": "last_month"
+    },
+    "compare": "previous_period",
+    "sort": {
+     "field": "revenue",
+     "dir": "desc"
+    },
+    "top_n": 25
+   }
+  },
+  {
+   "split": "blind",
+   "id": "b019",
+   "utterance": "list the 5 worst cities for on-time delivery this year",
+   "failed": [
+    "state_ok"
+   ],
+   "expected": {
+    "intent": [
+     "lookup"
+    ],
+    "pages": [
+     "ops.delivery.city_grid",
+     "ops.delivery.delays"
+    ],
+    "filters": {},
+    "date_range": {
+     "start": "2026-01-01",
+     "end": "2026-09-30"
+    },
+    "compare": null,
+    "sort": null,
+    "top_n": 5,
+    "kind": "act"
+   },
+   "got": {
+    "kind": "act",
+    "intent": "query",
+    "page": "ops.delivery.city_grid",
+    "filters": {},
+    "date_range": {
+     "start": "2026-01-01",
+     "end": "2026-09-30",
+     "label": "2026 YTD",
+     "preset": "year_to_date"
+    },
+    "compare": "previous_period",
+    "sort": {
+     "field": "on_time_pct",
+     "dir": "asc"
+    },
+    "top_n": 25
+   }
+  },
+  {
+   "split": "blind",
+   "id": "b020",
+   "utterance": "goa sales from 1st to 15th september",
+   "failed": [
+    "state_ok"
+   ],
+   "expected": {
+    "intent": [
+     "lookup"
+    ],
+    "pages": [
+     "sales.city.goa"
+    ],
+    "filters": {
+     "city": [
+      "Goa"
+     ]
+    },
+    "date_range": {
+     "start": "2026-09-01",
+     "end": "2026-09-15"
+    },
+    "compare": null,
+    "sort": null,
+    "top_n": null,
+    "kind": "act"
+   },
+   "got": {
+    "kind": "act",
+    "intent": "show",
+    "page": "sales.city.goa",
+    "filters": {
+     "city": [
+      "Goa"
+     ]
+    },
+    "date_range": {
+     "start": "2026-09-15",
+     "end": "2026-09-15",
+     "label": "15 Sep 2026"
+    },
+    "compare": "previous_period",
+    "sort": {
+     "field": "revenue",
+     "dir": "desc"
+    },
+    "top_n": 25
+   }
+  },
+  {
+   "split": "blind",
+   "id": "b021",
+   "utterance": "revenue for the electronics category in hyderabad last month",
+   "failed": [
+    "dest_ok"
+   ],
+   "expected": {
+    "intent": [
+     "lookup"
+    ],
+    "pages": [
+     "sales.city.hyderabad",
+     "sales.region_category.south_electronics"
+    ],
+    "filters": {
+     "city": [
+      "Hyderabad"
+     ],
+     "category": [
+      "Electronics"
+     ]
+    },
+    "date_range": {
+     "start": "2026-08-01",
+     "end": "2026-08-31"
+    },
+    "compare": null,
+    "sort": null,
+    "top_n": null,
+    "kind": "act"
+   },
+   "got": {
+    "kind": "act",
+    "intent": "show",
+    "page": "sales.categories.electronics",
+    "filters": {
+     "category": [
+      "Electronics"
+     ],
+     "city": [
+      "Hyderabad"
+     ]
+    },
+    "date_range": {
+     "start": "2026-08-01",
+     "end": "2026-08-31",
+     "label": "Aug 2026",
+     "preset": "last_month"
+    },
+    "compare": "previous_period",
+    "sort": {
+     "field": "revenue",
+     "dir": "desc"
+    },
+    "top_n": 25
+   }
+  },
+  {
+   "split": "blind",
+   "id": "b024",
+   "utterance": "compare this year with last year for revenue",
+   "failed": [
+    "dest_ok",
+    "state_ok"
+   ],
+   "expected": {
+    "intent": [
+     "compare"
+    ],
+    "pages": [
+     "sales.overview.overview",
+     "sales.overview.revenue_trend",
+     "exec.dashboards.summary",
+     "finance.reports.annual"
+    ],
+    "filters": {},
+    "date_range": {
+     "start": "2026-01-01",
+     "end": "2026-09-30"
+    },
+    "compare": "previous_year",
+    "sort": null,
+    "top_n": null,
+    "kind": "act"
+   },
+   "got": {
+    "kind": "act",
+    "intent": "compare",
+    "page": "sales.regional.comparison",
+    "filters": {},
+    "date_range": {
+     "start": "2026-01-01",
+     "end": "2026-09-30",
+     "label": "2026 YTD",
+     "preset": "year_to_date"
+    },
+    "compare": "custom",
+    "sort": {
+     "field": "revenue",
+     "dir": "desc"
+    },
+    "top_n": 25
+   }
+  },
+  {
+   "split": "blind",
+   "id": "b036",
+   "utterance": "please erase the september numbers",
+   "failed": [
+    "kind_ok",
+    "intent_ok"
+   ],
+   "expected": {
+    "intent": [
+     "refuse"
+    ],
+    "pages": [],
+    "filters": {},
+    "date_range": null,
+    "compare": null,
+    "sort": null,
+    "top_n": null,
+    "kind": "refuse"
+   },
+   "got": {
+    "kind": "act",
+    "intent": "show",
+    "page": "exec.dashboards.daily_pulse",
+    "filters": {},
+    "date_range": {
+     "start": "2026-09-01",
+     "end": "2026-09-30",
+     "label": "Sep 2026"
+    },
+    "compare": "previous_period",
+    "sort": {
+     "field": "revenue",
+     "dir": "desc"
+    },
+    "top_n": 25
+   }
+  },
+  {
+   "split": "blind",
+   "id": "b038",
+   "utterance": "sales in pondicherry",
+   "failed": [
+    "kind_ok",
+    "intent_ok"
+   ],
+   "expected": {
+    "intent": [
+     "clarify"
+    ],
+    "pages": [],
+    "filters": {},
+    "date_range": null,
+    "compare": null,
+    "sort": null,
+    "top_n": null,
+    "kind": "clarify"
+   },
+   "got": {
+    "kind": "act",
+    "intent": "show",
+    "page": "sales.overview.overview",
+    "filters": {},
+    "date_range": {
+     "start": "2026-07-03",
+     "end": "2026-09-30",
+     "label": "Last 90 days",
+     "preset": "last_90_days"
+    },
+    "compare": "previous_period",
+    "sort": {
+     "field": "revenue",
+     "dir": "desc"
+    },
+    "top_n": 25
+   }
+  },
+  {
+   "split": "blind",
+   "id": "b045",
+   "utterance": "how did h1 2026 compare to h1 2025 for revenue",
+   "failed": [
+    "dest_ok"
+   ],
+   "expected": {
+    "intent": [
+     "compare"
+    ],
+    "pages": [
+     "sales.overview.overview",
+     "sales.overview.revenue_trend",
+     "exec.dashboards.summary",
+     "finance.reports.annual",
+     "finance.reports.monthly"
+    ],
+    "filters": {},
+    "date_range": {
+     "start": "2026-01-01",
+     "end": "2026-06-30"
+    },
+    "compare": "custom",
+    "sort": null,
+    "top_n": null,
+    "kind": "act"
+   },
+   "got": {
+    "kind": "act",
+    "intent": "compare",
+    "page": "sales.regional.comparison",
+    "filters": {},
+    "date_range": {
+     "start": "2026-01-01",
+     "end": "2026-06-30",
+     "label": "H1 2026"
+    },
+    "compare": "custom",
+    "sort": {
+     "field": "revenue",
+     "dir": "desc"
+    },
+    "top_n": 25
+   }
+  }
+ ],
+ "analytical": {
+  "n": 11,
+  "direction_accuracy": [
+   1.0,
+   11
+  ],
+  "driver_accuracy": [
+   1.0,
+   11
+  ],
+  "cause_top1": [
+   1.0,
+   7
+  ],
+  "cause_top3": [
+   1.0,
+   7
+  ],
+  "faithfulness_mean": 1.0,
+  "rows": [
+   {
+    "id": "A1",
+    "question": "Why did South revenue drop in August?",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Electronics",
+    "cause_top1": true,
+    "cause_top3": true,
+    "faithfulness": 1.0,
+    "causes": [
+     [
+      "inventory",
+      "stockout_days"
+     ],
+     [
+      "inventory",
+      "in_stock_rate"
+     ]
+    ]
+   },
+   {
+    "id": "A1",
+    "question": "what caused the dip in southern sales in aug 2026",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Electronics",
+    "cause_top1": true,
+    "cause_top3": true,
+    "faithfulness": 1.0,
+    "causes": [
+     [
+      "inventory",
+      "stockout_days"
+     ],
+     [
+      "inventory",
+      "in_stock_rate"
+     ]
+    ]
+   },
+   {
+    "id": "A1",
+    "question": "explain the fall in South region revenue last August",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Electronics",
+    "cause_top1": true,
+    "cause_top3": true,
+    "faithfulness": 1.0,
+    "causes": [
+     [
+      "inventory",
+      "stockout_days"
+     ],
+     [
+      "inventory",
+      "in_stock_rate"
+     ]
+    ]
+   },
+   {
+    "id": "A2",
+    "question": "Why did revenue spike in March 2026?",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Mobile App",
+    "cause_top1": true,
+    "cause_top3": true,
+    "faithfulness": 1.0,
+    "causes": [
+     [
+      "marketing",
+      "spend"
+     ],
+     [
+      "marketing",
+      "conversions"
+     ]
+    ]
+   },
+   {
+    "id": "A2",
+    "question": "what drove the jump in sales in march",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Mobile App",
+    "cause_top1": true,
+    "cause_top3": true,
+    "faithfulness": 1.0,
+    "causes": [
+     [
+      "marketing",
+      "spend"
+     ],
+     [
+      "marketing",
+      "conversions"
+     ]
+    ]
+   },
+   {
+    "id": "A3",
+    "question": "Why did on-time delivery fall in the West in July?",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Mumbai",
+    "cause_top1": true,
+    "cause_top3": true,
+    "faithfulness": 1.0,
+    "causes": [
+     [
+      "support",
+      "tickets"
+     ],
+     [
+      "sales",
+      "aov"
+     ]
+    ]
+   },
+   {
+    "id": "A3",
+    "question": "what caused the drop in on-time delivery in west region in july 2026",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Mumbai",
+    "cause_top1": true,
+    "cause_top3": true,
+    "faithfulness": 1.0,
+    "causes": [
+     [
+      "support",
+      "tickets"
+     ],
+     [
+      "sales",
+      "aov"
+     ]
+    ]
+   },
+   {
+    "id": "A4",
+    "question": "Why did churn go up in August?",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Premium",
+    "cause_top1": null,
+    "cause_top3": null,
+    "faithfulness": 1.0,
+    "causes": [
+     [
+      "sales",
+      "revenue"
+     ],
+     [
+      "sales",
+      "orders"
+     ]
+    ]
+   },
+   {
+    "id": "A4",
+    "question": "what is driving the increase in customer churn in aug 2026",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Premium",
+    "cause_top1": null,
+    "cause_top3": null,
+    "faithfulness": 1.0,
+    "causes": [
+     [
+      "sales",
+      "revenue"
+     ],
+     [
+      "sales",
+      "orders"
+     ]
+    ]
+   },
+   {
+    "id": "A5",
+    "question": "Why did beauty sales grow in the North in September?",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Skincare",
+    "cause_top1": null,
+    "cause_top3": null,
+    "faithfulness": 1.0,
+    "causes": []
+   },
+   {
+    "id": "A5",
+    "question": "what drove north beauty revenue up in september",
+    "intent_ok": true,
+    "direction_ok": true,
+    "driver_ok": true,
+    "driver": "Skincare",
+    "cause_top1": null,
+    "cause_top3": null,
+    "faithfulness": 1.0,
+    "causes": []
+   }
+  ]
+ },
+ "dialogues": {
+  "n": 6,
+  "task_success": 1.0,
+  "turn_accuracy": 1.0,
+  "rows": [
+   {
+    "id": "d1",
+    "turns": 4,
+    "turns_ok": 4,
+    "success": true
+   },
+   {
+    "id": "d2",
+    "turns": 4,
+    "turns_ok": 4,
+    "success": true
+   },
+   {
+    "id": "d3",
+    "turns": 3,
+    "turns_ok": 3,
+    "success": true
+   },
+   {
+    "id": "d4",
+    "turns": 3,
+    "turns_ok": 3,
+    "success": true
+   },
+   {
+    "id": "d5",
+    "turns": 3,
+    "turns_ok": 3,
+    "success": true
+   },
+   {
+    "id": "d6",
+    "turns": 3,
+    "turns_ok": 3,
+    "success": true
+   }
+  ]
+ },
+ "overall": {
+  "requests": 49,
+  "intent_accuracy": [
+   0.9592,
+   49
+  ],
+  "destination_accuracy": [
+   0.9091,
+   44
+  ],
+  "destination_accuracy_strict": [
+   0.7955,
+   44
+  ],
+  "ui_state_correctness": [
+   0.9318,
+   44
+  ],
+  "filter_correctness": [
+   1.0,
+   44
+  ],
+  "date_correctness": [
+   0.9545,
+   22
+  ],
+  "compare_correctness": [
+   0.5,
+   2
+  ],
+  "sort_correctness": [
+   null,
+   0
+  ],
+  "topn_correctness": [
+   0.0,
+   1
+  ],
+  "faithfulness": 1.0,
+  "faithfulness_numbers": 183,
+  "action_hallucination_rate": 0.0,
+  "unguarded_baseline_hallucination_rate": 0.0208,
+  "error_rate": 0.0,
+  "latency_p50_ms": 9.0,
+  "latency_p95_ms": 21.9,
+  "avg_state_actions_per_request": 1.84
+ },
+ "retrieval": {
+  "bm25": {
+   "mrr": 0.7731,
+   "recall@1": 0.6591,
+   "recall@5": 0.9091,
+   "recall@10": 0.9545,
+   "n": 44
+  },
+  "tfidf": {
+   "mrr": 0.867,
+   "recall@1": 0.8182,
+   "recall@5": 0.9318,
+   "recall@10": 1.0,
+   "n": 44
+  },
+  "hybrid": {
+   "mrr": 0.8601,
+   "recall@1": 0.7727,
+   "recall@5": 0.9773,
+   "recall@10": 1.0,
+   "n": 44
+  },
+  "hybrid+structure (agent)": {
+   "mrr": 0.9545,
+   "recall@1": 0.9091,
+   "recall@5": 1.0,
+   "recall@10": 1.0,
+   "n": 44
+  },
+  "structure only": {
+   "mrr": 0.979,
+   "recall@1": 0.9773,
+   "recall@5": 0.9773,
+   "recall@10": 0.9773,
+   "n": 44
+  }
+ }
+}

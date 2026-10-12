@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App graph · Lumen Copilot</title>
+<link rel="stylesheet" href="/static/styles.css">
+<style>
+  body { background: var(--forest); color: #e8f1ee; overflow: hidden; }
+  .bar { position: fixed; top: 0; left: 0; right: 0; padding: 14px 20px; display: flex; gap: 16px; align-items: center; z-index: 2; flex-wrap: wrap;
+    background: linear-gradient(var(--forest) 70%, transparent); }
+  h1 { font-family: var(--display); font-size: 22px; margin: 0; font-weight: 600; }
+  .bar input { padding: 7px 10px; border-radius: var(--r-m); border: 1px solid var(--forest-3); background: var(--forest-2); color: #fff; min-width: 240px; }
+  .legend { display: flex; gap: 12px; font-size: 12px; color: #b9d0c8; flex-wrap: wrap; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; }
+  .stats { font-size: 12px; color: #9fb8b0; }
+  a { color: #e3a018; }
+  svg { width: 100vw; height: 100vh; display: block; }
+  .info { position: fixed; right: 16px; bottom: 16px; width: 320px; background: rgba(27,67,60,.95); border: 1px solid var(--forest-3); border-radius: var(--r-m); padding: 12px 14px; font-size: 13px; display: none; }
+  .info h3 { margin: 0 0 6px; font-size: 15px; }
+  .info ul { margin: 6px 0 0; padding-left: 16px; max-height: 220px; overflow: auto; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <h1>Application knowledge graph</h1>
+  <input id="q" type="search" placeholder="Highlight a page, metric or value">
+  <div class="legend" id="legend"></div>
+  <span class="stats" id="stats"></span>
+  <a href="/">Back to the app</a>
+</div>
+<svg id="svg"></svg>
+<div class="info" id="info"></div>
+<script src="/static/vendor/d3.min.js"></script>
+<script>
+const COLORS = { directory: "#e3a018", subdirectory: "#d9b45f", page: "#7aa98a", view: "#ffffff", metric: "#6c9db5", dimension: "#c9a24e", value: "#9fb8b0", widget: "#5b8c85" };
+const SIZE = { directory: 9, subdirectory: 6, page: 3.5, view: 12, metric: 4.5, dimension: 6, value: 2.5, widget: 2 };
+fetch("/api/graph").then((r) => r.json()).then((g) => {
+  document.getElementById("stats").textContent = `${g.stats.nodes} nodes · ${g.stats.edges} edges (widgets hidden: ${g.stats.by_type.widget || 0})`;
+  document.getElementById("legend").innerHTML = Object.entries(COLORS).filter(([k]) => k !== "widget").map(([k, c]) => `<span><i style="background:${c}"></i>${k}</span>`).join("");
+  const W = innerWidth, H = innerHeight;
+  const svg = d3.select("#svg"), root = svg.append("g");
+  svg.call(d3.zoom().scaleExtent([0.2, 6]).on("zoom", (e) => root.attr("transform", e.transform)));
+  const nodes = g.nodes.map((d) => ({ ...d })), links = g.edges.map((e) => ({ ...e }));
+  const adj = new Map(nodes.map((n) => [n.id, new Set()]));
+  links.forEach((l) => { adj.get(l.source)?.add(l.target); adj.get(l.target)?.add(l.source); });
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id((d) => d.id).distance((l) => (l.rel === "contains" ? 22 : 55)).strength(0.25))
+    .force("charge", d3.forceManyBody().strength((d) => (d.type === "view" ? -500 : d.type === "directory" ? -260 : -30)))
+    .force("center", d3.forceCenter(W / 2, H / 2 + 20)).force("collide", d3.forceCollide((d) => SIZE[d.type] + 2));
+  const link = root.append("g").attr("stroke", "#2a5a51").attr("stroke-opacity", 0.55).selectAll("line").data(links).join("line").attr("stroke-width", 0.6);
+  const node = root.append("g").selectAll("circle").data(nodes).join("circle")
+    .attr("r", (d) => SIZE[d.type] || 3).attr("fill", (d) => COLORS[d.type] || "#999").attr("stroke", "#12302b").attr("stroke-width", 0.8)
+    .call(d3.drag().on("start", (e, d) => { if (!e.active) sim.alphaTarget(0.2).restart(); d.fx = d.x; d.fy = d.y; })
+      .on("drag", (e, d) => { d.fx = e.x; d.fy = e.y; }).on("end", (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+  node.append("title").text((d) => `${d.type}: ${d.label}`);
+  const label = root.append("g").selectAll("text").data(nodes.filter((d) => ["view", "directory"].includes(d.type))).join("text")
+    .text((d) => d.label).attr("fill", "#fff").attr("font-size", (d) => (d.type === "view" ? 13 : 11)).attr("font-family", "Bricolage, sans-serif").attr("dx", 12).attr("dy", 4);
+  sim.on("tick", () => {
+    link.attr("x1", (d) => d.source.x).attr("y1", (d) => d.source.y).attr("x2", (d) => d.target.x).attr("y2", (d) => d.target.y);
+    node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+    label.attr("x", (d) => d.x).attr("y", (d) => d.y);
+  });
+  function focus(ids) {
+    node.attr("opacity", (d) => (!ids || ids.has(d.id) ? 1 : 0.12));
+    link.attr("stroke-opacity", (l) => (!ids || (ids.has(l.source.id) && ids.has(l.target.id)) ? 0.7 : 0.04));
+  }
+  node.on("click", (e, d) => {
+    const ids = new Set([d.id, ...adj.get(d.id)]);
+    focus(ids);
+    const nb = [...adj.get(d.id)].map((id) => nodes.find((n) => n.id === id)).filter(Boolean);
+    const info = document.getElementById("info");
+    info.style.display = "block";
+    info.innerHTML = `<h3>${d.label}</h3><div>${d.type}${d.route ? ` · <a href="/#${d.route}">open page</a>` : ""}</div><ul>${nb.slice(0, 60).map((n) => `<li>${n.type}: ${n.label}</li>`).join("")}</ul>`;
+  });
+  svg.on("click", (e) => { if (e.target.tagName === "svg") { focus(null); document.getElementById("info").style.display = "none"; } });
+  document.getElementById("q").addEventListener("input", (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    if (!q) return focus(null);
+    const hit = nodes.filter((n) => n.label.toLowerCase().includes(q));
+    const ids = new Set(hit.flatMap((n) => [n.id, ...adj.get(n.id)]));
+    focus(ids);
+  });
+});
+</script>
+</body>
+</html>
